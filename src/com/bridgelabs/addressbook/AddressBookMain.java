@@ -16,7 +16,8 @@ public class AddressBookMain {
 		AddressBookMain addressBookMain = new AddressBookMain();
 		AddressBook addressBook = new AddressBook();
 		do {
-			System.out.println("Enter the choice number\n1. Add Contact\n2. View all Contacts\n3. Exit");
+			System.out.println(
+					"Enter the choice no\n1. Add Contact\n2. View all Contacts\n3. Edit Existing Contact by Full Name\n4. Exit");
 			choice = sc.nextInt();
 			sc.nextLine();
 			switch (choice) {
@@ -27,37 +28,57 @@ public class AddressBookMain {
 				addressBookMain.viewContacts(addressBook);
 				break;
 			case 3:
+				addressBookMain.editContact(addressBook);
+				break;
+			case 4:
 				System.out.println("You have quit the program!");
 				break;
 			default:
 				System.out.println("Invalid choice! Select a valid choice.");
 				break;
 			}
-		} while (choice != 3);
+		} while (choice != 4);
 	}
 
 	private void createContact(AddressBook addressBook) {
+		Contact contact = new Contact();
 		System.out.println("Create a contact");
+		createOrEditContact(contact);
+		addressBook.addContact(contact);
+		System.out.println("Contact added successfully!");
+	}
+
+	private void editContact(AddressBook addressBook) {
+		System.out.println("Enter full name (firstName<space>lastName)to edit contact");
+		String fullName = sc.nextLine();
+		Contact contactToEdit = addressBook.getContactByFullName(fullName);
+		if (contactToEdit == null)
+			System.out.println("No Contact found with the given full name");
+		else {
+			createOrEditContact(contactToEdit);
+			System.out.println("Contact details updated successfully!");
+		}
+
+	}
+
+	private void createOrEditContact(Contact contact) {
 		System.out.println("Enter first name:");
-		String firstName = sc.nextLine();
+		contact.setFirstName(sc.nextLine());
 		System.out.println("Enter last name:");
-		String lastName = sc.nextLine();
+		contact.setLastName(sc.nextLine());
 		System.out.println("Enter address:");
-		String address = sc.nextLine();
+		contact.setAddress(sc.nextLine());
 		System.out.println("Enter city:");
-		String city = sc.nextLine();
+		contact.setCity(sc.nextLine());
 		System.out.println("Enter state:");
-		String state = sc.nextLine();
+		contact.setState(sc.nextLine());
 		System.out.println("Enter zip code:");
-		int zipCode = sc.nextInt();
+		contact.setZipCode(sc.nextInt());
 		System.out.println("Enter phone number:");
-		long phoneNo = sc.nextLong();
+		contact.setPhoneNo(sc.nextLong());
 		sc.nextLine();
 		System.out.println("Enter email:");
-		String email = sc.nextLine();
-
-		Contact contact = new Contact(firstName, lastName, address, city, state, zipCode, phoneNo, email);
-		addressBook.addContact(contact);
+		contact.setEmail(sc.nextLine());
 	}
 
 	private void viewContacts(AddressBook addressBook) {

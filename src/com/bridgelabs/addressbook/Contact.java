@@ -11,6 +11,9 @@ public class Contact {
 	private long phoneNo;
 	private String email;
 
+	public Contact() {
+	}
+
 	// parameter constructor
 	public Contact(String firstName, String lastName, String address, String city, String state, int zipCode,
 			long phoneNo, String email) {

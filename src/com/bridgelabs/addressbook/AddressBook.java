@@ -23,4 +23,14 @@ public class AddressBook {
 	public void addContact(Contact contact) {
 		contactList.add(contact);
 	}
+
+	// edit contact by full name
+	public Contact getContactByFullName(String fullName) {
+		for (Contact contact : contactList) {
+			String name = contact.getFirstName() + " " + contact.getLastName();
+			if (name.equals(fullName))
+				return contact;
+		}
+		return null;
+	}
 }
