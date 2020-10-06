@@ -118,6 +118,7 @@ public class AddressBookMain {
 
 	}
 
+	// display contact details
 	private static void displayContactDetails(Contact contact) {
 		System.out.println("First Name: " + contact.getFirstName());
 		System.out.println("Last Name: " + contact.getLastName());
