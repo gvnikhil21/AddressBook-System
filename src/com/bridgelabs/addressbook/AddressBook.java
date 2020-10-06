@@ -24,7 +24,7 @@ public class AddressBook {
 		contactList.add(contact);
 	}
 
-	// edit contact by full name
+	// get contact by full name
 	public Contact getContactByFullName(String fullName) {
 		for (Contact contact : contactList) {
 			String name = contact.getFirstName() + " " + contact.getLastName();
@@ -32,5 +32,10 @@ public class AddressBook {
 				return contact;
 		}
 		return null;
+	}
+
+	// delete contact
+	public void deleteContact(Contact contact) {
+		contactList.remove(contact);
 	}
 }

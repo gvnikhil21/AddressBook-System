@@ -17,7 +17,7 @@ public class AddressBookMain {
 		AddressBook addressBook = new AddressBook();
 		do {
 			System.out.println(
-					"Enter the choice no\n1. Add Contact\n2. View all Contacts\n3. Edit Existing Contact by Full Name\n4. Exit");
+					"Enter the choice no\n1. Add Contact\n2. View all Contacts\n3. Edit Existing Contact by Full Name\n4. Remove Contact by Full Name\n5. Exit");
 			choice = sc.nextInt();
 			sc.nextLine();
 			switch (choice) {
@@ -31,13 +31,34 @@ public class AddressBookMain {
 				addressBookMain.editContact(addressBook);
 				break;
 			case 4:
+				addressBookMain.deleteContact(addressBook);
+				break;
+			case 5:
 				System.out.println("You have quit the program!");
 				break;
 			default:
-				System.out.println("Invalid choice! Select a valid choice.");
+				System.out.println("Invalid choice! Select a valid choice.\n");
 				break;
 			}
-		} while (choice != 4);
+		} while (choice != 5);
+	}
+
+	private void deleteContact(AddressBook addressBook) {
+		System.out.println("Enter full name (firstName<space>lastName)to remove contact");
+		String fullName = sc.nextLine();
+		Contact contact = addressBook.getContactByFullName(fullName);
+		if (contact == null)
+			System.out.println("Contact not found!\n");
+		else {
+			System.out.println("Do you want to remove the contact(Y/N)");
+			String response = sc.nextLine();
+			if (response.equalsIgnoreCase("Y")) {
+				addressBook.deleteContact(contact);
+				System.out.println("Contact removed successfully!\n");
+			} else
+				System.out.println("Contact not removed!\n");
+		}
+
 	}
 
 	private void createContact(AddressBook addressBook) {
@@ -45,7 +66,7 @@ public class AddressBookMain {
 		System.out.println("Create a contact");
 		createOrEditContact(contact);
 		addressBook.addContact(contact);
-		System.out.println("Contact added successfully!");
+		System.out.println("Contact added successfully!\n");
 	}
 
 	private void editContact(AddressBook addressBook) {
@@ -56,7 +77,7 @@ public class AddressBookMain {
 			System.out.println("No Contact found with the given full name");
 		else {
 			createOrEditContact(contactToEdit);
-			System.out.println("Contact details updated successfully!");
+			System.out.println("Contact details updated successfully!\n");
 		}
 
 	}
