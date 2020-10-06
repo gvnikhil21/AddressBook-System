@@ -17,43 +17,55 @@ public class AddressBookMain {
 		AddressBook addressBook = new AddressBook();
 		do {
 			System.out.println(
-					"Enter the choice no\n1. Add Contact\n2. View all Contacts\n3. Edit Existing Contact by Full Name\n4. Remove Contact by Full Name\n5. Exit");
+					"Enter the choice number:\n1. Add AddressBook\n2. Add Contact\n3. View all Contacts\n4. Edit Existing Contact by Full Name\n5. Remove Contact by Full Name\n6. Exit");
 			choice = sc.nextInt();
 			sc.nextLine();
 			switch (choice) {
 			case 1:
-				addressBookMain.createContact(addressBook);
+				addressBookMain.createAddressbook(addressBook);
 				break;
 			case 2:
-				addressBookMain.viewContacts(addressBook);
+				addressBookMain.createContact(addressBook);
 				break;
 			case 3:
-				addressBookMain.editContact(addressBook);
+				addressBookMain.viewContacts(addressBook);
 				break;
 			case 4:
-				addressBookMain.deleteContact(addressBook);
+				addressBookMain.editContact(addressBook);
 				break;
 			case 5:
+				addressBookMain.deleteContact(addressBook);
+				break;
+			case 6:
 				System.out.println("You have quit the program!");
 				break;
 			default:
 				System.out.println("Invalid choice! Select a valid choice.\n");
 				break;
 			}
-		} while (choice != 5);
+		} while (choice != 6);
+	}
+
+	private void createAddressbook(AddressBook addressBook) {
+		System.out.println("Enter the name of AddressBook: ");
+		String addressBookName = sc.nextLine();
+		addressBook.addAddressBook(addressBookName);
+		System.out.println("AddressBook added successfully!\n");
 	}
 
 	private void deleteContact(AddressBook addressBook) {
+		System.out.println("Enter the addressBook name from which you want to delete contact");
+		String addressBookName = sc.nextLine();
 		System.out.println("Enter full name (firstName<space>lastName)to remove contact");
 		String fullName = sc.nextLine();
-		Contact contact = addressBook.getContactByFullName(fullName);
+		Contact contact = addressBook.getContactByFullName(addressBookName, fullName);
 		if (contact == null)
 			System.out.println("Contact not found!\n");
 		else {
 			System.out.println("Do you want to remove the contact(Y/N)");
 			String response = sc.nextLine();
 			if (response.equalsIgnoreCase("Y")) {
-				addressBook.deleteContact(contact);
+				addressBook.deleteContact(addressBookName, contact);
 				System.out.println("Contact removed successfully!\n");
 			} else
 				System.out.println("Contact not removed!\n");
@@ -62,17 +74,21 @@ public class AddressBookMain {
 	}
 
 	private void createContact(AddressBook addressBook) {
+		System.out.println("Enter the addressBook name to which you want to add contact");
+		String addressBookName = sc.nextLine();
 		Contact contact = new Contact();
 		System.out.println("Create a contact");
 		createOrEditContact(contact);
-		addressBook.addContact(contact);
+		addressBook.addContact(addressBookName, contact);
 		System.out.println("Contact added successfully!\n");
 	}
 
 	private void editContact(AddressBook addressBook) {
+		System.out.println("Enter the addressBook name from which you want to edit contact");
+		String addressBookName = sc.nextLine();
 		System.out.println("Enter full name (firstName<space>lastName)to edit contact");
 		String fullName = sc.nextLine();
-		Contact contactToEdit = addressBook.getContactByFullName(fullName);
+		Contact contactToEdit = addressBook.getContactByFullName(addressBookName, fullName);
 		if (contactToEdit == null)
 			System.out.println("No Contact found with the given full name");
 		else {
@@ -103,11 +119,13 @@ public class AddressBookMain {
 	}
 
 	private void viewContacts(AddressBook addressBook) {
-		ArrayList<Contact> contactList = addressBook.getContactList();
-		if (contactList.size() == 0)
-			System.out.println("No contacts in the Address Book to display!");
+		System.out.println("Enter the addressBook name whose contacts you want to see");
+		String addressBookName = sc.nextLine();
+		ArrayList<Contact> contactList = addressBook.getContactList(addressBookName);
+		if (contactList == null || contactList.size() == 0)
+			System.out.println("No contacts in the" + addressBookName + " Address Book to display!\n");
 		else {
-			System.out.println("\nContacts in the Address Book are: ");
+			System.out.println("\nContacts in the " + addressBookName + " Address Book are: ");
 			int countContact = 0;
 			for (Contact contact : contactList) {
 				countContact++;
