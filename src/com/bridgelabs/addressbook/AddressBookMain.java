@@ -1,6 +1,7 @@
 package com.bridgelabs.addressbook;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class AddressBookMain {
@@ -17,7 +18,7 @@ public class AddressBookMain {
 		AddressBook addressBook = new AddressBook();
 		do {
 			System.out.println(
-					"Enter the choice number:\n1. Add AddressBook\n2. Add Contact\n3. View all Contacts\n4. Edit Existing Contact by Full Name\n5. Remove Contact by Full Name\n6. Exit");
+					"Enter the choice number:\n1. Add AddressBook\n2. Add Contact\n3. View all Contacts\n4. Edit Existing Contact by Full Name\n5. Remove Contact by Full Name\n6. Search Person in City or State\n7. Exit");
 			choice = sc.nextInt();
 			sc.nextLine();
 			switch (choice) {
@@ -37,13 +38,28 @@ public class AddressBookMain {
 				addressBookMain.deleteContact(addressBook);
 				break;
 			case 6:
+				addressBookMain.searchContactInCityOrState(addressBook);
+				break;
+			case 7:
 				System.out.println("You have quit the program!");
 				break;
 			default:
 				System.out.println("Invalid choice! Select a valid choice.\n");
 				break;
 			}
-		} while (choice != 6);
+		} while (choice != 7);
+	}
+
+	private void searchContactInCityOrState(AddressBook addressBook) {
+		System.out.println("Enter the name of city or state you want to search persons: ");
+		String cityOrStateName = sc.nextLine();
+		List<Contact> contactListByCityOrState = addressBook.searchContactByCityOrState(cityOrStateName);
+		if (contactListByCityOrState == null || contactListByCityOrState.size() == 0)
+			System.out.println("No contacts in the city or state chosen\n");
+		else {
+			System.out.println("List of contacts by city or state name: ");
+			contactListByCityOrState.stream().forEach(contact -> displayContactDetails(contact));
+		}
 	}
 
 	private void createAddressbook(AddressBook addressBook) {

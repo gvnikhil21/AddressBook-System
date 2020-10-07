@@ -2,6 +2,9 @@ package com.bridgelabs.addressbook;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class AddressBook {
 	private HashMap<String, ArrayList<Contact>> addressBookMap;
@@ -57,5 +60,17 @@ public class AddressBook {
 	// delete contact
 	public void deleteContact(String addressBookName, Contact contact) {
 		addressBookMap.get(addressBookName).remove(contact);
+	}
+
+	public List<Contact> searchContactByCityOrState(String name) {
+		List<Contact> contactListByCityOrState = new ArrayList<Contact>();
+		List<Contact> contactList = new ArrayList<Contact>();
+		for (Map.Entry<String, ArrayList<Contact>> entry : addressBookMap.entrySet()) {
+			contactListByCityOrState = entry.getValue().stream()
+					.filter(con -> (con.getCity().equalsIgnoreCase(name) || con.getState().equalsIgnoreCase(name)))
+					.collect(Collectors.toList());
+			contactListByCityOrState.stream().forEach(con -> contactList.add(con));
+		}
+		return contactList;
 	}
 }
