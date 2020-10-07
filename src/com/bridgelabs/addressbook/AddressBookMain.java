@@ -79,8 +79,11 @@ public class AddressBookMain {
 		Contact contact = new Contact();
 		System.out.println("Create a contact");
 		createOrEditContact(contact);
-		addressBook.addContact(addressBookName, contact);
-		System.out.println("Contact added successfully!\n");
+		boolean response = addressBook.addContact(addressBookName, contact);
+		if (response)
+			System.out.println("Contact added successfully!\n");
+		else
+			System.out.println("Contact not added!\n");
 	}
 
 	private void editContact(AddressBook addressBook) {

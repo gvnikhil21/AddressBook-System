@@ -91,4 +91,15 @@ public class Contact {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (object == this)
+			return true;
+		if (!(object instanceof Contact))
+			return false;
+		Contact contact = (Contact) object;
+		return (this.getFirstName() + " " + this.getLastName())
+				.equals(contact.getFirstName() + " " + contact.getLastName());
+	}
 }

@@ -21,12 +21,19 @@ public class AddressBook {
 	}
 
 	// adding contact list
-	public void addContact(String addressBookName, Contact contact) {
-		if (addressBookMap.containsKey(addressBookName))
-			addressBookMap.get(addressBookName).add(contact);
-		else {
+	public boolean addContact(String addressBookName, Contact contact) {
+		if (addressBookMap.containsKey(addressBookName)) {
+			Contact contactCheck = addressBookMap.get(addressBookName).stream().filter(con -> contact.equals(con))
+					.findAny().orElse(null);
+			if (contactCheck == null) {
+				addressBookMap.get(addressBookName).add(contact);
+				return true;
+			} else
+				return false;
+		} else {
 			addAddressBook(addressBookName);
 			addressBookMap.get(addressBookName).add(contact);
+			return true;
 		}
 	}
 
