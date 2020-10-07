@@ -18,7 +18,7 @@ public class AddressBookMain {
 		AddressBook addressBook = new AddressBook();
 		do {
 			System.out.println(
-					"Enter the choice number:\n1. Add AddressBook\n2. Add Contact\n3. View all Contacts\n4. Edit Existing Contact by Full Name\n5. Remove Contact by Full Name\n6. Search Person in City or State\n7. Exit");
+					"Enter the choice number:\n1. Add AddressBook\n2. Add Contact\n3. View all Contacts\n4. Edit Existing Contact by Full Name\n5. Remove Contact by Full Name\n6. View Contacts by City\n7. View Contacts by State\n8. Exit");
 			choice = sc.nextInt();
 			sc.nextLine();
 			switch (choice) {
@@ -38,27 +38,42 @@ public class AddressBookMain {
 				addressBookMain.deleteContact(addressBook);
 				break;
 			case 6:
-				addressBookMain.searchContactInCityOrState(addressBook);
+				addressBookMain.viewContactByCity(addressBook);
 				break;
 			case 7:
+				addressBookMain.viewContactByState(addressBook);
+				break;
+			case 8:
 				System.out.println("You have quit the program!");
 				break;
 			default:
 				System.out.println("Invalid choice! Select a valid choice.\n");
 				break;
 			}
-		} while (choice != 7);
+		} while (choice != 8);
 	}
 
-	private void searchContactInCityOrState(AddressBook addressBook) {
-		System.out.println("Enter the name of city or state you want to search persons: ");
-		String cityOrStateName = sc.nextLine();
-		List<Contact> contactListByCityOrState = addressBook.searchContactByCityOrState(cityOrStateName);
-		if (contactListByCityOrState == null || contactListByCityOrState.size() == 0)
-			System.out.println("No contacts in the city or state chosen\n");
+	private void viewContactByCity(AddressBook addressBook) {
+		System.out.println("Enter the city name to viewContacts");
+		String cityName = sc.nextLine();
+		List<Contact> cityContacts = addressBook.viewCityContacts(cityName);
+		if (cityContacts == null || cityContacts.size() == 0)
+			System.out.println("No contacts in " + cityName + " city\n");
 		else {
-			System.out.println("List of contacts by city or state name: ");
-			contactListByCityOrState.stream().forEach(contact -> displayContactDetails(contact));
+			System.out.println("List of contacts in city " + cityName + " : ");
+			cityContacts.stream().forEach(contact -> displayContactDetails(contact));
+		}
+	}
+
+	private void viewContactByState(AddressBook addressBook) {
+		System.out.println("Enter the state name to viewContacts");
+		String stateName = sc.nextLine();
+		List<Contact> stateContacts = addressBook.viewStateContacts(stateName);
+		if (stateContacts == null || stateContacts.size() == 0)
+			System.out.println("No contacts in " + stateName + " state\n");
+		else {
+			System.out.println("List of contacts in state " + stateName + " : ");
+			stateContacts.stream().forEach(contact -> displayContactDetails(contact));
 		}
 	}
 
@@ -96,8 +111,10 @@ public class AddressBookMain {
 		System.out.println("Create a contact");
 		createOrEditContact(contact);
 		boolean response = addressBook.addContact(addressBookName, contact);
-		if (response)
+		if (response) {
 			System.out.println("Contact added successfully!\n");
+		}
+
 		else
 			System.out.println("Contact not added!\n");
 	}
