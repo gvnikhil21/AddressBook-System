@@ -134,4 +134,14 @@ public class AddressBook {
 		}
 		return contactStateList;
 	}
+
+	public List<Contact> sortContactByName() {
+		List<Contact> sortedList = new ArrayList<Contact>();
+		for (Map.Entry<String, ArrayList<Contact>> entry : addressBookMap.entrySet()) {
+			entry.getValue().stream().sorted((con1, con2) -> (con1.getFirstName() + con1.getLastName())
+					.compareTo(con2.getFirstName() + con2.getLastName())).forEach(con -> sortedList.add(con));
+		}
+		return sortedList;
+	}
+
 }

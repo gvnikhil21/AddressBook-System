@@ -102,4 +102,11 @@ public class Contact {
 		return (this.getFirstName() + " " + this.getLastName())
 				.equals(contact.getFirstName() + " " + contact.getLastName());
 	}
+
+	@Override
+	public String toString() {
+		return "First Name: " + this.firstName + " " + "Last Name: " + this.lastName + " " + "Address: " + this.address
+				+ " " + "City: " + this.city + " " + "State: " + this.state + " " + "Zip Code: " + this.zipCode + " "
+				+ "Phone Number: " + this.phoneNo + " " + "Email: " + this.email;
+	}
 }

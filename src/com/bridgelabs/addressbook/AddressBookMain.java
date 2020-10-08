@@ -18,7 +18,7 @@ public class AddressBookMain {
 		AddressBook addressBook = new AddressBook();
 		do {
 			System.out.println(
-					"Enter the choice number:\n1. Add AddressBook\n2. Add Contact\n3. View all Contacts\n4. Edit Existing Contact by Full Name\n5. Remove Contact by Full Name\n6. View Contacts by City\n7. View Contacts by State\n8. Exit");
+					"Enter the choice number:\n1. Add AddressBook\n2. Add Contact\n3. View all Contacts\n4. Edit Existing Contact by Full Name\n5. Remove Contact by Full Name\n6. View Contacts by City\n7. View Contacts by State\n8. Sort Contact by Name\n9. Exit");
 			choice = sc.nextInt();
 			sc.nextLine();
 			switch (choice) {
@@ -44,13 +44,27 @@ public class AddressBookMain {
 				addressBookMain.viewContactByState(addressBook);
 				break;
 			case 8:
+				addressBookMain.sortByName(addressBook);
+				break;
+			case 9:
 				System.out.println("You have quit the program!");
 				break;
 			default:
 				System.out.println("Invalid choice! Select a valid choice.\n");
 				break;
 			}
-		} while (choice != 8);
+		} while (choice != 9);
+	}
+
+	private void sortByName(AddressBook addressBook) {
+		List<Contact> sortedContactListByName = addressBook.sortContactByName();
+		if (sortedContactListByName.size() == 0)
+			System.out.println("Contact list empty!\n");
+		else {
+			System.out.println("Contacts in sorted order by name: ");
+			sortedContactListByName.stream().forEach(System.out::println);
+			System.out.print("\n");
+		}
 	}
 
 	private void viewContactByCity(AddressBook addressBook) {
@@ -61,7 +75,7 @@ public class AddressBookMain {
 			System.out.println("No contacts in " + cityName + " city\n");
 		else {
 			System.out.println("List of contacts in city " + cityName + " : ");
-			cityContacts.stream().forEach(contact -> displayContactDetails(contact));
+			cityContacts.stream().forEach(System.out::println);
 			System.out.println("Found " + cityContacts.stream().count() + " contacts in " + cityName + " city\n");
 		}
 	}
@@ -74,7 +88,7 @@ public class AddressBookMain {
 			System.out.println("No contacts in " + stateName + " state\n");
 		else {
 			System.out.println("List of contacts in state " + stateName + " : ");
-			stateContacts.stream().forEach(contact -> displayContactDetails(contact));
+			stateContacts.stream().forEach(System.out::println);
 			System.out.println("Found " + stateContacts.stream().count() + " contacts in " + stateName + " state\n");
 		}
 	}
@@ -164,25 +178,8 @@ public class AddressBookMain {
 			System.out.println("No contacts in the" + addressBookName + " Address Book to display!\n");
 		else {
 			System.out.println("\nContacts in the " + addressBookName + " Address Book are: ");
-			int countContact = 0;
-			for (Contact contact : contactList) {
-				countContact++;
-				System.out.println("Contact " + countContact + " : ");
-				displayContactDetails(contact);
-			}
+			contactList.stream().forEach((System.out::println));
+			System.out.print("\n");
 		}
-
-	}
-
-	// display contact details
-	private static void displayContactDetails(Contact contact) {
-		System.out.println("First Name: " + contact.getFirstName());
-		System.out.println("Last Name: " + contact.getLastName());
-		System.out.println("Address: " + contact.getAddress());
-		System.out.println("City: " + contact.getCity());
-		System.out.println("State: " + contact.getState());
-		System.out.println("Zip Code: " + contact.getZipCode());
-		System.out.println("Phone Number: " + contact.getPhoneNo());
-		System.out.println("Email: " + contact.getEmail() + "\n");
 	}
 }
