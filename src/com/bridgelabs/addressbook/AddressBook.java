@@ -135,12 +135,31 @@ public class AddressBook {
 		return contactStateList;
 	}
 
-	public List<Contact> sortContactByName() {
+	public List<Contact> sortContactByName(String addressBookName) {
 		List<Contact> sortedList = new ArrayList<Contact>();
-		for (Map.Entry<String, ArrayList<Contact>> entry : addressBookMap.entrySet()) {
-			entry.getValue().stream().sorted((con1, con2) -> (con1.getFirstName() + con1.getLastName())
-					.compareTo(con2.getFirstName() + con2.getLastName())).forEach(con -> sortedList.add(con));
-		}
+		addressBookMap.get(addressBookName).stream().sorted((con1, con2) -> (con1.getFirstName() + con1.getLastName())
+				.compareTo(con2.getFirstName() + con2.getLastName())).forEach(con -> sortedList.add(con));
+		return sortedList;
+	}
+
+	public List<Contact> sortContactByZipCode(String addressBookName) {
+		List<Contact> sortedList = new ArrayList<Contact>();
+		addressBookMap.get(addressBookName).stream().sorted((con1, con2) -> con1.getZipCode() - con2.getZipCode())
+				.forEach(con -> sortedList.add(con));
+		return sortedList;
+	}
+
+	public List<Contact> sortContactByCity(String addressBookName) {
+		List<Contact> sortedList = new ArrayList<Contact>();
+		addressBookMap.get(addressBookName).stream().sorted((con1, con2) -> con1.getCity().compareTo(con2.getCity()))
+				.forEach(con -> sortedList.add(con));
+		return sortedList;
+	}
+
+	public List<Contact> sortContactByState(String addressBookName) {
+		List<Contact> sortedList = new ArrayList<Contact>();
+		addressBookMap.get(addressBookName).stream().sorted((con1, con2) -> con1.getState().compareTo(con2.getState()))
+				.forEach(con -> sortedList.add(con));
 		return sortedList;
 	}
 

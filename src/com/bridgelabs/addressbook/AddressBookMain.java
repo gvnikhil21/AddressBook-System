@@ -18,7 +18,7 @@ public class AddressBookMain {
 		AddressBook addressBook = new AddressBook();
 		do {
 			System.out.println(
-					"Enter the choice number:\n1. Add AddressBook\n2. Add Contact\n3. View all Contacts\n4. Edit Existing Contact by Full Name\n5. Remove Contact by Full Name\n6. View Contacts by City\n7. View Contacts by State\n8. Sort Contact by Name\n9. Exit");
+					"Enter the choice number:\n1. Add AddressBook\n2. Add Contact\n3. View all Contacts\n4. Edit Existing Contact by Full Name\n5. Remove Contact by Full Name\n6. View Contacts by City\n7. View Contacts by State\n8. Sort Contact by Name\n9. Sort Contact by Zip Code\n10. Sort Contact by City\n11. Sort Contact by State\n12. Exit");
 			choice = sc.nextInt();
 			sc.nextLine();
 			switch (choice) {
@@ -47,22 +47,72 @@ public class AddressBookMain {
 				addressBookMain.sortByName(addressBook);
 				break;
 			case 9:
+				addressBookMain.sortByZipCode(addressBook);
+				break;
+			case 10:
+				addressBookMain.sortByCity(addressBook);
+				break;
+			case 11:
+				addressBookMain.sortByState(addressBook);
+				break;
+			case 12:
 				System.out.println("You have quit the program!");
 				break;
 			default:
 				System.out.println("Invalid choice! Select a valid choice.\n");
 				break;
 			}
-		} while (choice != 9);
+		} while (choice != 12);
 	}
 
 	private void sortByName(AddressBook addressBook) {
-		List<Contact> sortedContactListByName = addressBook.sortContactByName();
-		if (sortedContactListByName.size() == 0)
+		System.out.println("Enter the AddressBook name in which you want to sort the contact: ");
+		String addressBookName = sc.nextLine();
+		List<Contact> sortedContactList = addressBook.sortContactByName(addressBookName);
+		if (sortedContactList.size() == 0)
 			System.out.println("Contact list empty!\n");
 		else {
-			System.out.println("Contacts in sorted order by name: ");
-			sortedContactListByName.stream().forEach(System.out::println);
+			System.out.println("Contacts in " + addressBookName + " addressBook in sorted order by name: ");
+			sortedContactList.stream().forEach(System.out::println);
+			System.out.print("\n");
+		}
+	}
+
+	private void sortByZipCode(AddressBook addressBook) {
+		System.out.println("Enter the AddressBook name in which you want to sort the contact: ");
+		String addressBookName = sc.nextLine();
+		List<Contact> sortedContactList = addressBook.sortContactByZipCode(addressBookName);
+		if (sortedContactList.size() == 0)
+			System.out.println("Contact list empty!\n");
+		else {
+			System.out.println("Contacts in " + addressBookName + " addressBook in sorted order by Zip Code: ");
+			sortedContactList.stream().forEach(System.out::println);
+			System.out.print("\n");
+		}
+	}
+
+	private void sortByCity(AddressBook addressBook) {
+		System.out.println("Enter the AddressBook name in which you want to sort the contact: ");
+		String addressBookName = sc.nextLine();
+		List<Contact> sortedContactList = addressBook.sortContactByCity(addressBookName);
+		if (sortedContactList.size() == 0)
+			System.out.println("Contact list empty!\n");
+		else {
+			System.out.println("Contacts in " + addressBookName + " addressBook in sorted order by city: ");
+			sortedContactList.stream().forEach(System.out::println);
+			System.out.print("\n");
+		}
+	}
+
+	private void sortByState(AddressBook addressBook) {
+		System.out.println("Enter the AddressBook name in which you want to sort the contact: ");
+		String addressBookName = sc.nextLine();
+		List<Contact> sortedContactList = addressBook.sortContactByState(addressBookName);
+		if (sortedContactList.size() == 0)
+			System.out.println("Contact list empty!\n");
+		else {
+			System.out.println("Contacts in " + addressBookName + " addressBook in sorted order by state: ");
+			sortedContactList.stream().forEach(System.out::println);
 			System.out.print("\n");
 		}
 	}
