@@ -3,8 +3,6 @@ package com.bridgelabs.addressbook;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class AddressBook {
 	private HashMap<String, ArrayList<Contact>> addressBookMap;
@@ -29,48 +27,40 @@ public class AddressBook {
 
 	// storing city to contact
 	public void addCityToContact() {
-		List<Contact> contactList = new ArrayList<Contact>();
-		for (Map.Entry<String, ArrayList<Contact>> entry : addressBookMap.entrySet()) {
-			contactList = entry.getValue().stream().collect(Collectors.toList());
-			contactList.stream().forEach(con -> {
-				if (addressBookCityToContactMap.containsKey(entry.getKey())) {
-					if (addressBookCityToContactMap.get(entry.getKey()).containsKey(con.getCity())) {
-						if (addressBookCityToContactMap.get(entry.getKey()).get(con.getCity()).contains(con) == false)
-							addressBookCityToContactMap.get(entry.getKey()).get(con.getCity()).add(con);
-					} else {
-						addressBookCityToContactMap.get(entry.getKey()).put(con.getCity(), new ArrayList<Contact>());
+		addressBookMap.entrySet().stream().forEach(entry -> entry.getValue().stream().forEach(con -> {
+			if (addressBookCityToContactMap.containsKey(entry.getKey())) {
+				if (addressBookCityToContactMap.get(entry.getKey()).containsKey(con.getCity())) {
+					if (addressBookCityToContactMap.get(entry.getKey()).get(con.getCity()).contains(con) == false)
 						addressBookCityToContactMap.get(entry.getKey()).get(con.getCity()).add(con);
-					}
 				} else {
-					addressBookCityToContactMap.put(entry.getKey(), new HashMap<String, ArrayList<Contact>>());
 					addressBookCityToContactMap.get(entry.getKey()).put(con.getCity(), new ArrayList<Contact>());
 					addressBookCityToContactMap.get(entry.getKey()).get(con.getCity()).add(con);
 				}
-			});
-		}
+			} else {
+				addressBookCityToContactMap.put(entry.getKey(), new HashMap<String, ArrayList<Contact>>());
+				addressBookCityToContactMap.get(entry.getKey()).put(con.getCity(), new ArrayList<Contact>());
+				addressBookCityToContactMap.get(entry.getKey()).get(con.getCity()).add(con);
+			}
+		}));
 	}
 
 	// storing state to contact
 	public void addStateToContact() {
-		List<Contact> contactList = new ArrayList<Contact>();
-		for (Map.Entry<String, ArrayList<Contact>> entry : addressBookMap.entrySet()) {
-			contactList = entry.getValue().stream().collect(Collectors.toList());
-			contactList.stream().forEach(con -> {
-				if (addressBookStateToContactMap.containsKey(entry.getKey())) {
-					if (addressBookStateToContactMap.get(entry.getKey()).containsKey(con.getState())) {
-						if (addressBookStateToContactMap.get(entry.getKey()).get(con.getState()).contains(con) == false)
-							addressBookStateToContactMap.get(entry.getKey()).get(con.getState()).add(con);
-					} else {
-						addressBookStateToContactMap.get(entry.getKey()).put(con.getState(), new ArrayList<Contact>());
+		addressBookMap.entrySet().stream().forEach(entry -> entry.getValue().stream().forEach(con -> {
+			if (addressBookStateToContactMap.containsKey(entry.getKey())) {
+				if (addressBookStateToContactMap.get(entry.getKey()).containsKey(con.getState())) {
+					if (addressBookStateToContactMap.get(entry.getKey()).get(con.getState()).contains(con) == false)
 						addressBookStateToContactMap.get(entry.getKey()).get(con.getState()).add(con);
-					}
 				} else {
-					addressBookStateToContactMap.put(entry.getKey(), new HashMap<String, ArrayList<Contact>>());
 					addressBookStateToContactMap.get(entry.getKey()).put(con.getState(), new ArrayList<Contact>());
 					addressBookStateToContactMap.get(entry.getKey()).get(con.getState()).add(con);
 				}
-			});
-		}
+			} else {
+				addressBookStateToContactMap.put(entry.getKey(), new HashMap<String, ArrayList<Contact>>());
+				addressBookStateToContactMap.get(entry.getKey()).put(con.getState(), new ArrayList<Contact>());
+				addressBookStateToContactMap.get(entry.getKey()).get(con.getState()).add(con);
+			}
+		}));
 	}
 
 	// adding contact list
@@ -121,45 +111,55 @@ public class AddressBook {
 
 	public List<Contact> viewCityContacts(String cityName) {
 		List<Contact> contactCityList = new ArrayList<Contact>();
-		for (Map.Entry<String, HashMap<String, ArrayList<Contact>>> entry : addressBookCityToContactMap.entrySet()) {
-			entry.getValue().get(cityName).stream().forEach(contact -> contactCityList.add(contact));
-		}
+		addressBookCityToContactMap.entrySet().stream().forEach(e -> {
+			if (e.getValue().containsKey(cityName))
+				e.getValue().get(cityName).stream().forEach(con -> contactCityList.add(con));
+		});
 		return contactCityList;
 	}
 
 	public List<Contact> viewStateContacts(String stateName) {
 		List<Contact> contactStateList = new ArrayList<Contact>();
-		for (Map.Entry<String, HashMap<String, ArrayList<Contact>>> entry : addressBookStateToContactMap.entrySet()) {
-			entry.getValue().get(stateName).stream().forEach(contact -> contactStateList.add(contact));
-		}
+		addressBookStateToContactMap.entrySet().stream().forEach(e -> {
+			if (e.getValue().containsKey(stateName))
+				e.getValue().get(stateName).stream().forEach(con -> contactStateList.add(con));
+		});
 		return contactStateList;
 	}
 
 	public List<Contact> sortContactByName(String addressBookName) {
 		List<Contact> sortedList = new ArrayList<Contact>();
-		addressBookMap.get(addressBookName).stream().sorted((con1, con2) -> (con1.getFirstName() + con1.getLastName())
-				.compareTo(con2.getFirstName() + con2.getLastName())).forEach(con -> sortedList.add(con));
+		if (addressBookMap.containsKey(addressBookName))
+			addressBookMap.get(addressBookName).stream()
+					.sorted((con1, con2) -> (con1.getFirstName() + con1.getLastName())
+							.compareTo(con2.getFirstName() + con2.getLastName()))
+					.forEach(con -> sortedList.add(con));
 		return sortedList;
 	}
 
 	public List<Contact> sortContactByZipCode(String addressBookName) {
 		List<Contact> sortedList = new ArrayList<Contact>();
-		addressBookMap.get(addressBookName).stream().sorted((con1, con2) -> con1.getZipCode() - con2.getZipCode())
-				.forEach(con -> sortedList.add(con));
+		if (addressBookMap.containsKey(addressBookName))
+			addressBookMap.get(addressBookName).stream().sorted((con1, con2) -> con1.getZipCode() - con2.getZipCode())
+					.forEach(con -> sortedList.add(con));
 		return sortedList;
 	}
 
 	public List<Contact> sortContactByCity(String addressBookName) {
 		List<Contact> sortedList = new ArrayList<Contact>();
-		addressBookMap.get(addressBookName).stream().sorted((con1, con2) -> con1.getCity().compareTo(con2.getCity()))
-				.forEach(con -> sortedList.add(con));
+		if (addressBookMap.containsKey(addressBookName))
+			addressBookMap.get(addressBookName).stream()
+					.sorted((con1, con2) -> con1.getCity().compareTo(con2.getCity()))
+					.forEach(con -> sortedList.add(con));
 		return sortedList;
 	}
 
 	public List<Contact> sortContactByState(String addressBookName) {
 		List<Contact> sortedList = new ArrayList<Contact>();
-		addressBookMap.get(addressBookName).stream().sorted((con1, con2) -> con1.getState().compareTo(con2.getState()))
-				.forEach(con -> sortedList.add(con));
+		if (addressBookMap.containsKey(addressBookName))
+			addressBookMap.get(addressBookName).stream()
+					.sorted((con1, con2) -> con1.getState().compareTo(con2.getState()))
+					.forEach(con -> sortedList.add(con));
 		return sortedList;
 	}
 

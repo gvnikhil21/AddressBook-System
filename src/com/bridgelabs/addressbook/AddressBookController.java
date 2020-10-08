@@ -152,8 +152,8 @@ public class AddressBookController {
 	}
 
 	private void printSortedContacts(List<Contact> sortedContactList, String addressBookName) {
-		if (sortedContactList.size() == 0)
-			System.out.println("Contact list empty!\n");
+		if (sortedContactList == null || sortedContactList.size() == 0)
+			System.out.println("Contact list in " + addressBookName + " addressBook empty!\n");
 		else {
 			System.out.println("Contacts in " + addressBookName + " addressBook: ");
 			sortedContactList.stream().forEach(System.out::println);
