@@ -57,9 +57,9 @@ public class AddressBook {
 			contactList = entry.getValue().stream().collect(Collectors.toList());
 			contactList.stream().forEach(con -> {
 				if (addressBookStateToContactMap.containsKey(entry.getKey())) {
-					if (addressBookCityToContactMap.get(entry.getKey()).containsKey(con.getState())) {
-						if (addressBookCityToContactMap.get(entry.getKey()).get(con.getState()).contains(con) == false)
-							addressBookCityToContactMap.get(entry.getKey()).get(con.getState()).add(con);
+					if (addressBookStateToContactMap.get(entry.getKey()).containsKey(con.getState())) {
+						if (addressBookStateToContactMap.get(entry.getKey()).get(con.getState()).contains(con) == false)
+							addressBookStateToContactMap.get(entry.getKey()).get(con.getState()).add(con);
 					} else {
 						addressBookStateToContactMap.get(entry.getKey()).put(con.getState(), new ArrayList<Contact>());
 						addressBookStateToContactMap.get(entry.getKey()).get(con.getState()).add(con);
