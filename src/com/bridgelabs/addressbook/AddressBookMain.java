@@ -62,6 +62,7 @@ public class AddressBookMain {
 		else {
 			System.out.println("List of contacts in city " + cityName + " : ");
 			cityContacts.stream().forEach(contact -> displayContactDetails(contact));
+			System.out.println("Found " + cityContacts.stream().count() + " contacts in " + cityName + " city\n");
 		}
 	}
 
@@ -74,6 +75,7 @@ public class AddressBookMain {
 		else {
 			System.out.println("List of contacts in state " + stateName + " : ");
 			stateContacts.stream().forEach(contact -> displayContactDetails(contact));
+			System.out.println("Found " + stateContacts.stream().count() + " contacts in " + stateName + " state\n");
 		}
 	}
 
