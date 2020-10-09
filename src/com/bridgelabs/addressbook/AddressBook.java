@@ -3,16 +3,16 @@ package com.bridgelabs.addressbook;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class AddressBook {
 	private HashMap<String, ArrayList<Contact>> addressBookMap;
-	private HashMap<String, HashMap<String, ArrayList<Contact>>> addressBookCityToContactMap;
-	private HashMap<String, HashMap<String, ArrayList<Contact>>> addressBookStateToContactMap;
+	private Map<String, List<Contact>> CityToContactMap;
+	private Map<String, List<Contact>> StateToContactMap;
 
 	public AddressBook() {
 		addressBookMap = new HashMap<String, ArrayList<Contact>>();
-		addressBookCityToContactMap = new HashMap<String, HashMap<String, ArrayList<Contact>>>();
-		addressBookStateToContactMap = new HashMap<String, HashMap<String, ArrayList<Contact>>>();
 	}
 
 	// getters and setters
@@ -27,40 +27,14 @@ public class AddressBook {
 
 	// storing city to contact
 	public void addCityToContact() {
-		addressBookMap.entrySet().stream().forEach(entry -> entry.getValue().stream().forEach(con -> {
-			if (addressBookCityToContactMap.containsKey(entry.getKey())) {
-				if (addressBookCityToContactMap.get(entry.getKey()).containsKey(con.getCity())) {
-					if (addressBookCityToContactMap.get(entry.getKey()).get(con.getCity()).contains(con) == false)
-						addressBookCityToContactMap.get(entry.getKey()).get(con.getCity()).add(con);
-				} else {
-					addressBookCityToContactMap.get(entry.getKey()).put(con.getCity(), new ArrayList<Contact>());
-					addressBookCityToContactMap.get(entry.getKey()).get(con.getCity()).add(con);
-				}
-			} else {
-				addressBookCityToContactMap.put(entry.getKey(), new HashMap<String, ArrayList<Contact>>());
-				addressBookCityToContactMap.get(entry.getKey()).put(con.getCity(), new ArrayList<Contact>());
-				addressBookCityToContactMap.get(entry.getKey()).get(con.getCity()).add(con);
-			}
-		}));
+		CityToContactMap = addressBookMap.values().stream().flatMap(list -> list.stream())
+				.collect(Collectors.groupingBy(Contact::getCity, Collectors.toList()));
 	}
 
 	// storing state to contact
 	public void addStateToContact() {
-		addressBookMap.entrySet().stream().forEach(entry -> entry.getValue().stream().forEach(con -> {
-			if (addressBookStateToContactMap.containsKey(entry.getKey())) {
-				if (addressBookStateToContactMap.get(entry.getKey()).containsKey(con.getState())) {
-					if (addressBookStateToContactMap.get(entry.getKey()).get(con.getState()).contains(con) == false)
-						addressBookStateToContactMap.get(entry.getKey()).get(con.getState()).add(con);
-				} else {
-					addressBookStateToContactMap.get(entry.getKey()).put(con.getState(), new ArrayList<Contact>());
-					addressBookStateToContactMap.get(entry.getKey()).get(con.getState()).add(con);
-				}
-			} else {
-				addressBookStateToContactMap.put(entry.getKey(), new HashMap<String, ArrayList<Contact>>());
-				addressBookStateToContactMap.get(entry.getKey()).put(con.getState(), new ArrayList<Contact>());
-				addressBookStateToContactMap.get(entry.getKey()).get(con.getState()).add(con);
-			}
-		}));
+		StateToContactMap = addressBookMap.values().stream().flatMap(list -> list.stream())
+				.collect(Collectors.groupingBy(Contact::getState, Collectors.toList()));
 	}
 
 	// adding contact list
@@ -68,19 +42,14 @@ public class AddressBook {
 		if (addressBookMap.containsKey(addressBookName)) {
 			Contact contactCheck = addressBookMap.get(addressBookName).stream().filter(con -> contact.equals(con))
 					.findAny().orElse(null);
-
 			if (contactCheck == null) {
 				addressBookMap.get(addressBookName).add(contact);
-				addCityToContact();
-				addStateToContact();
 				return true;
 			} else
 				return false;
 		} else {
 			addAddressBook(addressBookName);
 			addressBookMap.get(addressBookName).add(contact);
-			addCityToContact();
-			addStateToContact();
 			return true;
 		}
 	}
@@ -92,47 +61,38 @@ public class AddressBook {
 
 	// get contact by full name
 	public Contact getContactByFullName(String addressBookName, String fullName) {
+		Contact contact = null;
 		if (addressBookMap.containsKey(addressBookName)) {
-			for (Contact contact : addressBookMap.get(addressBookName)) {
-				String name = contact.getFirstName() + " " + contact.getLastName();
-				if (name.equals(fullName))
-					return contact;
-			}
+			contact = addressBookMap.get(addressBookName).stream()
+					.filter(con -> (con.getFirstName() + " " + con.getLastName()).equals(fullName)).findAny()
+					.orElse(null);
 		}
-		return null;
+
+		return contact;
 	}
 
 	// delete contact
 	public void deleteContact(String addressBookName, Contact contact) {
 		addressBookMap.get(addressBookName).remove(contact);
-		addressBookCityToContactMap.get(addressBookName).get(contact.getCity()).remove(contact);
-		addressBookStateToContactMap.get(addressBookName).get(contact.getState()).remove(contact);
 	}
 
+	// view contacts by city
 	public List<Contact> viewCityContacts(String cityName) {
-		List<Contact> contactCityList = new ArrayList<Contact>();
-		addressBookCityToContactMap.entrySet().stream().forEach(e -> {
-			if (e.getValue().containsKey(cityName))
-				e.getValue().get(cityName).stream().forEach(con -> contactCityList.add(con));
-		});
-		return contactCityList;
+		addCityToContact();
+		return CityToContactMap.get(cityName);
 	}
 
+	// view contacts by state
 	public List<Contact> viewStateContacts(String stateName) {
-		List<Contact> contactStateList = new ArrayList<Contact>();
-		addressBookStateToContactMap.entrySet().stream().forEach(e -> {
-			if (e.getValue().containsKey(stateName))
-				e.getValue().get(stateName).stream().forEach(con -> contactStateList.add(con));
-		});
-		return contactStateList;
+		addStateToContact();
+		return StateToContactMap.get(stateName);
 	}
 
 	public List<Contact> sortContactByName(String addressBookName) {
 		List<Contact> sortedList = new ArrayList<Contact>();
 		if (addressBookMap.containsKey(addressBookName))
 			addressBookMap.get(addressBookName).stream()
-					.sorted((con1, con2) -> (con1.getFirstName() + con1.getLastName())
-							.compareTo(con2.getFirstName() + con2.getLastName()))
+					.sorted((con1, con2) -> (con1.getFirstName()).compareTo(con2.getFirstName()))
 					.forEach(con -> sortedList.add(con));
 		return sortedList;
 	}

@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class AddressBookController {
 	private static Scanner sc = new Scanner(System.in);
 
+	// creates addressBook
 	public void createAddressbook(AddressBook addressBook) {
 		System.out.println("Enter the name of AddressBook: ");
 		String addressBookName = sc.nextLine();
@@ -14,6 +15,7 @@ public class AddressBookController {
 		System.out.println("AddressBook added successfully!\n");
 	}
 
+	// creates contact in specified addressBook
 	public void createContact(AddressBook addressBook) {
 		System.out.println("Enter the addressBook name to which you want to add contact");
 		String addressBookName = sc.nextLine();
@@ -23,12 +25,11 @@ public class AddressBookController {
 		boolean response = addressBook.addContact(addressBookName, contact);
 		if (response) {
 			System.out.println("Contact added successfully!\n");
-		}
-
-		else
+		} else
 			System.out.println("Contact not added!\n");
 	}
 
+	// displays contacts in specified addressBook
 	public void viewContacts(AddressBook addressBook) {
 		System.out.println("Enter the addressBook name whose contacts you want to see");
 		String addressBookName = sc.nextLine();
@@ -42,6 +43,7 @@ public class AddressBookController {
 		}
 	}
 
+	// edits contact
 	public void editContact(AddressBook addressBook) {
 		System.out.println("Enter the addressBook name from which you want to edit contact");
 		String addressBookName = sc.nextLine();
@@ -54,7 +56,6 @@ public class AddressBookController {
 			createOrEditContact(contactToEdit);
 			System.out.println("Contact details updated successfully!\n");
 		}
-
 	}
 
 	private void createOrEditContact(Contact contact) {
@@ -77,6 +78,7 @@ public class AddressBookController {
 		contact.setEmail(sc.nextLine());
 	}
 
+	// deletes contact from specified addressBook
 	public void deleteContact(AddressBook addressBook) {
 		System.out.println("Enter the addressBook name from which you want to delete contact");
 		String addressBookName = sc.nextLine();
@@ -94,9 +96,9 @@ public class AddressBookController {
 			} else
 				System.out.println("Contact not removed!\n");
 		}
-
 	}
 
+	// displays contact by city
 	public void viewContactByCity(AddressBook addressBook) {
 		System.out.println("Enter the city name to viewContacts");
 		String cityName = sc.nextLine();
@@ -110,6 +112,7 @@ public class AddressBookController {
 		}
 	}
 
+	// displays contact by state
 	public void viewContactByState(AddressBook addressBook) {
 		System.out.println("Enter the state name to viewContacts");
 		String stateName = sc.nextLine();
@@ -123,6 +126,7 @@ public class AddressBookController {
 		}
 	}
 
+	// sorts by name
 	public void sortByName(AddressBook addressBook) {
 		System.out.println("Enter the AddressBook name in which you want to sort the contact: ");
 		String addressBookName = sc.nextLine();
@@ -130,6 +134,7 @@ public class AddressBookController {
 		printSortedContacts(sortedContactList, addressBookName);
 	}
 
+	// sorts by zip code
 	public void sortByZipCode(AddressBook addressBook) {
 		System.out.println("Enter the AddressBook name in which you want to sort the contact: ");
 		String addressBookName = sc.nextLine();
@@ -137,6 +142,7 @@ public class AddressBookController {
 		printSortedContacts(sortedContactList, addressBookName);
 	}
 
+	// sorts by city
 	public void sortByCity(AddressBook addressBook) {
 		System.out.println("Enter the AddressBook name in which you want to sort the contact: ");
 		String addressBookName = sc.nextLine();
@@ -144,6 +150,7 @@ public class AddressBookController {
 		printSortedContacts(sortedContactList, addressBookName);
 	}
 
+	// sorts by state
 	public void sortByState(AddressBook addressBook) {
 		System.out.println("Enter the AddressBook name in which you want to sort the contact: ");
 		String addressBookName = sc.nextLine();
@@ -151,6 +158,7 @@ public class AddressBookController {
 		printSortedContacts(sortedContactList, addressBookName);
 	}
 
+	// prints sorted contacts
 	private void printSortedContacts(List<Contact> sortedContactList, String addressBookName) {
 		if (sortedContactList == null || sortedContactList.size() == 0)
 			System.out.println("Contact list in " + addressBookName + " addressBook empty!\n");
