@@ -105,8 +105,13 @@ public class Contact {
 
 	@Override
 	public String toString() {
-		return "|First Name: " + this.firstName + " | " + "Last Name: " + this.lastName + " | " + "Address: "
-				+ this.address + " | " + "City: " + this.city + " | " + "State: " + this.state + " | " + "Zip Code: "
-				+ this.zipCode + " | " + "Phone Number: " + this.phoneNo + " | " + "Email: " + this.email;
+		return this.firstName + "," + this.lastName + "," + this.address + "," + this.city + "," + this.state + ","
+				+ this.zipCode + "," + this.phoneNo + "," + this.email + "\n";
+	}
+
+	public String getString() {
+		return "FirstName: " + this.firstName + " LastName: " + this.lastName + " Address: " + this.address + " City: "
+				+ this.city + " State: " + this.state + " ZipCode: " + this.zipCode + " PhoneNo: " + this.phoneNo
+				+ " Email: " + this.email + "\n";
 	}
 }

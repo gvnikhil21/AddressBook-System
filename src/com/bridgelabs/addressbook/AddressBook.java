@@ -1,5 +1,8 @@
 package com.bridgelabs.addressbook;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,17 +10,42 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class AddressBook {
-	private HashMap<String, ArrayList<Contact>> addressBookMap;
+	private Map<String, List<Contact>> addressBookMap;
 	private Map<String, List<Contact>> CityToContactMap;
 	private Map<String, List<Contact>> StateToContactMap;
 
 	public AddressBook() {
-		addressBookMap = new HashMap<String, ArrayList<Contact>>();
+		addressBookMap = new HashMap<String, List<Contact>>();
 	}
 
 	// getters and setters
-	public HashMap<String, ArrayList<Contact>> getAddressBookMap() {
+	public Map<String, List<Contact>> getAddressBookMap() {
 		return addressBookMap;
+	}
+
+	// reads details from contactsBook.txt and stores into addressBook Map
+	public boolean storeToAddressBook() {
+		BufferedReader fileReader = null;
+		boolean response = false;
+		try {
+			fileReader = new BufferedReader(
+					new FileReader("D:\\AssignmentBridgeLabs\\AddressBook System\\Output Files\\contactsBook.txt"));
+			String str = null;
+			while ((str = fileReader.readLine()) != null) {
+				String contact[] = str.trim().split(",");
+				response = addContact(contact[0], new Contact(contact[1], contact[2], contact[3], contact[4],
+						contact[5], Integer.parseInt(contact[6]), Long.parseLong(contact[7]), contact[8]));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				fileReader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return response;
 	}
 
 	// adding addressBook
@@ -55,7 +83,7 @@ public class AddressBook {
 	}
 
 	// get contact list of specific addressBook
-	public ArrayList<Contact> getContactList(String addressBookName) {
+	public List<Contact> getContactList(String addressBookName) {
 		return addressBookMap.get(addressBookName);
 	}
 
@@ -122,5 +150,4 @@ public class AddressBook {
 					.forEach(con -> sortedList.add(con));
 		return sortedList;
 	}
-
 }
