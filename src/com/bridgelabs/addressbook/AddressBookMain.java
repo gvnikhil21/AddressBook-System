@@ -76,6 +76,13 @@ public class AddressBookMain {
 			} while (choice != 12);
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				consoleReader.close();
+				consoleWriter.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
