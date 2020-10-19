@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.google.gson.Gson;
 import com.opencsv.CSVWriter;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
@@ -18,7 +19,8 @@ public class AddressBookController {
 
 	// creates contact in specified addressBook
 	public void createContact(AddressBook addressBook) throws IOException {
-		File file = new File("D:\\AssignmentBridgeLabs\\bridgelabs.addressbook\\Output Files\\contactsBook.txt");
+		File file = new File(
+				"D:\\AssignmentBridgeLabs\\AddressBook-System\\bridgelabs.addressbooksystem\\Output Files\\contactsBook.txt");
 		file.createNewFile();
 		try (BufferedWriter fileWriter = new BufferedWriter(new FileWriter(file, true));) {
 			AddressBookMain.consoleWriter.write("Enter the addressBook name to which you want to add contact\n");
@@ -259,12 +261,14 @@ public class AddressBookController {
 		}
 	}
 
+	// performs csv operations
 	public void performCSVOperations(AddressBook addressBook) throws IOException {
 		writeToCSVFile(addressBook);
 		readFromCSVFile();
 		AddressBookMain.consoleWriter.write("Scuccesfully performed CSV Operations!\n\n");
 	}
 
+	// reads contact details from csv file and prints to console
 	private void readFromCSVFile() throws IOException {
 		Reader reader = Files.newBufferedReader(Paths.get(
 				"D:\\AssignmentBridgeLabs\\AddressBook-System\\bridgelabs.addressbooksystem\\Output Files\\contactsBook.csv"));
@@ -276,6 +280,7 @@ public class AddressBookController {
 		AddressBookMain.consoleWriter.newLine();
 	}
 
+	// writes details of contact to csv file
 	private void writeToCSVFile(AddressBook addressBook) throws IOException {
 		Map<String, List<Contact>> addressBookMap = addressBook.getAddressBookMap();
 		List<Contact> contactList = addressBookMap.values().stream().flatMap(list -> list.stream())
@@ -291,5 +296,48 @@ public class AddressBookController {
 		} finally {
 			writer.close();
 		}
+	}
+
+	// performs Json operations
+	public void performJSONOperation(AddressBook addressBook) throws IOException {
+		Gson gson = writeToJSOnFileFromCSVfile();
+		readFromJSONFile(gson);
+		AddressBookMain.consoleWriter.write("Scuccesfully performed JSON Operations!\n\n");
+	}
+
+	// writes to Json file by reading from Csv file
+	private Gson writeToJSOnFileFromCSVfile() throws IOException {
+		File file = new File(
+				"D:\\AssignmentBridgeLabs\\AddressBook-System\\bridgelabs.addressbooksystem\\Output Files\\contactsBook.json");
+		file.createNewFile();
+		// reads from csv file
+		Reader reader = Files.newBufferedReader(Paths.get(
+				"D:\\AssignmentBridgeLabs\\AddressBook-System\\bridgelabs.addressbooksystem\\Output Files\\contactsBook.csv"));
+		CsvToBean<Contact> beanReader = new CsvToBeanBuilder<Contact>(reader).withType(Contact.class)
+				.withIgnoreLeadingWhiteSpace(true).build();
+		// parses the details to list of contact objects
+		List<Contact> contactList = beanReader.parse();
+		Gson gson = new Gson();
+		String json = gson.toJson(contactList);
+		FileWriter writer = new FileWriter(file);
+		writer.write(json);
+		writer.close();
+		return gson;
+	}
+
+	// reads from Json file and print in console
+	private void readFromJSONFile(Gson gson) throws IOException {
+		BufferedReader jsonReader = new BufferedReader(new FileReader(
+				"D:\\AssignmentBridgeLabs\\AddressBook-System\\bridgelabs.addressbooksystem\\Output Files\\contactsBook.json"));
+		Contact[] contactArray = gson.fromJson(jsonReader, Contact[].class);
+		List<Contact> contactList = Arrays.asList(contactArray);
+		contactList.stream().forEach(con -> {
+			try {
+				AddressBookMain.consoleWriter.write(con.getString());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
+		AddressBookMain.consoleWriter.newLine();
 	}
 }
