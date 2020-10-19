@@ -1,14 +1,24 @@
 package com.bridgelabs.addressbooksystem;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
+
+import com.opencsv.CSVWriter;
+import com.opencsv.bean.CsvToBean;
+import com.opencsv.bean.CsvToBeanBuilder;
+import com.opencsv.bean.StatefulBeanToCsv;
+import com.opencsv.bean.StatefulBeanToCsvBuilder;
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
 public class AddressBookController {
 
 	// creates contact in specified addressBook
 	public void createContact(AddressBook addressBook) throws IOException {
-		File file = new File(
-				"D:\\AssignmentBridgeLabs\\AddressBook-System\\bridgelabs.addressbooksystem\\Output Files\\contactsBook.txt");
+		File file = new File("D:\\AssignmentBridgeLabs\\bridgelabs.addressbook\\Output Files\\contactsBook.txt");
 		file.createNewFile();
 		try (BufferedWriter fileWriter = new BufferedWriter(new FileWriter(file, true));) {
 			AddressBookMain.consoleWriter.write("Enter the addressBook name to which you want to add contact\n");
@@ -49,12 +59,13 @@ public class AddressBookController {
 				AddressBookMain.consoleWriter.flush();
 				entry.getValue().stream().forEach(contact -> {
 					try {
-						AddressBookMain.consoleWriter.write(contact.getString() + "\n");
+						AddressBookMain.consoleWriter.write(contact.getString());
 						AddressBookMain.consoleWriter.flush();
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
 				});
+				AddressBookMain.consoleWriter.newLine();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -245,6 +256,40 @@ public class AddressBookController {
 			});
 			AddressBookMain.consoleWriter.write("\n");
 			AddressBookMain.consoleWriter.flush();
+		}
+	}
+
+	public void performCSVOperations(AddressBook addressBook) throws IOException {
+		writeToCSVFile(addressBook);
+		readFromCSVFile();
+		AddressBookMain.consoleWriter.write("Scuccesfully performed CSV Operations!\n\n");
+	}
+
+	private void readFromCSVFile() throws IOException {
+		Reader reader = Files.newBufferedReader(Paths.get(
+				"D:\\AssignmentBridgeLabs\\AddressBook-System\\bridgelabs.addressbooksystem\\Output Files\\contactsBook.csv"));
+		CsvToBean<Contact> beanReader = new CsvToBeanBuilder<Contact>(reader).withType(Contact.class)
+				.withIgnoreLeadingWhiteSpace(true).build();
+		for (Contact con : beanReader) {
+			AddressBookMain.consoleWriter.write(con.getString());
+		}
+		AddressBookMain.consoleWriter.newLine();
+	}
+
+	private void writeToCSVFile(AddressBook addressBook) throws IOException {
+		Map<String, List<Contact>> addressBookMap = addressBook.getAddressBookMap();
+		List<Contact> contactList = addressBookMap.values().stream().flatMap(list -> list.stream())
+				.collect(Collectors.toList());
+		Writer writer = Files.newBufferedWriter(Paths.get(
+				"D:\\AssignmentBridgeLabs\\AddressBook-System\\bridgelabs.addressbooksystem\\Output Files\\contactsBook.csv"));
+		StatefulBeanToCsv<Contact> beanWriter = new StatefulBeanToCsvBuilder<Contact>(writer)
+				.withQuotechar(CSVWriter.NO_QUOTE_CHARACTER).build();
+		try {
+			beanWriter.write(contactList);
+		} catch (CsvDataTypeMismatchException | CsvRequiredFieldEmptyException e) {
+			e.printStackTrace();
+		} finally {
+			writer.close();
 		}
 	}
 }
