@@ -37,6 +37,25 @@ public class AddressBookDBService {
 		return contactList;
 	}
 
+	// updates contact details in database
+	public void updateContactPhoneInAddressBook(String fisrtName, String lastName, Long phone)
+			throws AddressBookException {
+		try (Connection con = DatabaseConnector.getConnection()) {
+			String query = "update contact set phone_no=? where first_name=? and last_name=?";
+			PreparedStatement conStatement = con.prepareStatement(query);
+			conStatement.setLong(1, phone);
+			conStatement.setString(2, fisrtName);
+			conStatement.setString(3, lastName);
+			int status = conStatement.executeUpdate();
+			if (status > 0)
+				AddressBookMain.LOG.info("updated contact details in database successfully");
+			else
+				AddressBookMain.LOG.info("contact details not updated");
+		} catch (SQLException e) {
+			throw new AddressBookException(e.getMessage());
+		}
+	}
+
 	private List<Contact> getDataInDB(ResultSet resultSet) throws AddressBookException {
 		List<Contact> contactList = new ArrayList<>();
 		try {

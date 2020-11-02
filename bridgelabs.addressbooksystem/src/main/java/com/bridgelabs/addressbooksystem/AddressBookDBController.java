@@ -25,4 +25,14 @@ public class AddressBookDBController {
 			e.printStackTrace();
 		}
 	}
+
+	// updates phone details of contact
+	public void updatePhoneContact(String firstName, String lastName, Long phone) {
+		try {
+			AddressBookDBService.getInstance().updateContactPhoneInAddressBook(firstName, lastName, phone);
+		} catch (AddressBookException e) {
+			e.printStackTrace();
+		}
+		readContactsFromAddressBookDB();
+	}
 }

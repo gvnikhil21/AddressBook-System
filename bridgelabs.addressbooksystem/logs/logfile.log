@@ -16,3 +16,7 @@ INFO  | 2020-11-02 15:10:42 | [main] addressbooksystem.AddressBookMain (AddressB
 13. Read from csv and write to JSON file
 14. Exit
 
+INFO  | 2020-11-02 17:58:12 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:33) - read contact details from database successfully
+INFO  | 2020-11-02 18:00:56 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:33) - read contact details from database successfully
+INFO  | 2020-11-02 18:00:56 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:51) - updated contact details in database successfully
+INFO  | 2020-11-02 18:00:56 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:33) - read contact details from database successfully
