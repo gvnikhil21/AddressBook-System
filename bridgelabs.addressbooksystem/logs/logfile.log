@@ -1,0 +1,18 @@
+INFO  | 2020-11-02 15:10:42 | [main] addressbooksystem.AddressBookMain (AddressBookMain.java:23) - Welcome to AddressBook System!
+
+INFO  | 2020-11-02 15:10:42 | [main] addressbooksystem.AddressBookMain (AddressBookMain.java:25) - Enter the choice number:
+1. Add Contact
+2. Store Contacts 
+3. View All Contacts
+4. Edit Existing Contact by Full Name
+5. Remove Contact by Full Name
+6. View Contacts by City
+7. View Contacts by State
+8. Sort Contact by Name
+9. Sort Contact by Zip Code
+10. Sort Contact by City
+11. Sort Contact by State
+12. Write and read details from and to CSV file
+13. Read from csv and write to JSON file
+14. Exit
+

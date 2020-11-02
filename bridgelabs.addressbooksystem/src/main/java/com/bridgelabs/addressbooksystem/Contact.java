@@ -10,6 +10,7 @@ public class Contact {
 	private int zipCode;
 	private long phoneNo;
 	private String email;
+	private String contactId;
 
 	public Contact() {
 	}
@@ -25,6 +26,12 @@ public class Contact {
 		this.zipCode = zipCode;
 		this.phoneNo = phoneNo;
 		this.email = email;
+	}
+
+	public Contact(String firstName, String lastName, String address, String city, String state, int zipCode,
+			long phoneNo, String email, String contactId) {
+		this(firstName, lastName, address, city, state, zipCode, phoneNo, email);
+		this.contactId = contactId;
 	}
 
 	// getters and setters
@@ -90,6 +97,14 @@ public class Contact {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getContactId() {
+		return contactId;
+	}
+
+	public void setContactId(String contactId) {
+		this.contactId = contactId;
 	}
 
 	@Override
