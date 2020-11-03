@@ -28,6 +28,16 @@ public class AddressBookDBController {
 		}
 	}
 
+	// add contacts to database
+	public void addContactToDB(Contact contact) {
+		try {
+			if (AddressBookDBService.getInstance().addContact(contact))
+				contactList.add(contact);
+		} catch (AddressBookException e) {
+			e.printStackTrace();
+		}
+	}
+
 	// updates phone details of contact
 	public void updatePhoneContact(String firstName, String lastName, Long phone) {
 		try {

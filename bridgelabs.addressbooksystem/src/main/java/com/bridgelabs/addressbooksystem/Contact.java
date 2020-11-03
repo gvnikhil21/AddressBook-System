@@ -1,5 +1,7 @@
 package com.bridgelabs.addressbooksystem;
 
+import java.time.LocalDate;
+
 public class Contact {
 	// variables
 	private String firstName;
@@ -11,6 +13,9 @@ public class Contact {
 	private long phoneNo;
 	private String email;
 	private String contactId;
+	private LocalDate dateAdded;
+	private String addressBookId;
+	private String addressBookTypeId;
 
 	public Contact() {
 	}
@@ -32,6 +37,14 @@ public class Contact {
 			long phoneNo, String email, String contactId) {
 		this(firstName, lastName, address, city, state, zipCode, phoneNo, email);
 		this.contactId = contactId;
+	}
+
+	public Contact(String firstName, String lastName, String address, String city, String state, int zipCode,
+			long phoneNo, String email, LocalDate dateAdded, String addressBookId, String addressBookTypeId) {
+		this(firstName, lastName, address, city, state, zipCode, phoneNo, email);
+		this.dateAdded = dateAdded;
+		this.addressBookId = addressBookId;
+		this.addressBookTypeId = addressBookTypeId;
 	}
 
 	// getters and setters
@@ -105,6 +118,30 @@ public class Contact {
 
 	public void setContactId(String contactId) {
 		this.contactId = contactId;
+	}
+
+	public LocalDate getDateAdded() {
+		return dateAdded;
+	}
+
+	public void setDateAdded(LocalDate dateAdded) {
+		this.dateAdded = dateAdded;
+	}
+
+	public String getAddressBookId() {
+		return addressBookId;
+	}
+
+	public void setAddressBookId(String addressBookId) {
+		this.addressBookId = addressBookId;
+	}
+
+	public String getAddressBookTypeId() {
+		return addressBookTypeId;
+	}
+
+	public void setAddressBookTypeId(String addressBookTypeId) {
+		this.addressBookTypeId = addressBookTypeId;
 	}
 
 	@Override

@@ -38,3 +38,43 @@ INFO  | 2020-11-03 11:12:01 | [main] addressbooksystem.AddressBookDBService (Add
 INFO  | 2020-11-03 11:12:01 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:53) - updated contact details in database successfully
 INFO  | 2020-11-03 11:12:01 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:35) - read contact details from database successfully
 INFO  | 2020-11-03 11:12:01 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:72) - Contacts added in particular period retrieved successfully
+INFO  | 2020-11-03 12:00:23 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-03 12:00:23 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:123) - updated contact details in database successfully
+INFO  | 2020-11-03 12:00:23 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-03 12:00:23 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:142) - Contacts added in particular period retrieved successfully
+INFO  | 2020-11-03 12:01:29 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-03 12:01:29 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:123) - updated contact details in database successfully
+INFO  | 2020-11-03 12:01:29 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-03 12:01:29 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:142) - Contacts added in particular period retrieved successfully
+INFO  | 2020-11-03 12:02:06 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-03 12:02:21 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:123) - updated contact details in database successfully
+INFO  | 2020-11-03 12:02:21 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-03 12:02:21 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:142) - Contacts added in particular period retrieved successfully
+INFO  | 2020-11-03 12:03:14 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-03 12:03:14 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:125) - updated contact details in database successfully
+INFO  | 2020-11-03 12:03:14 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-03 12:03:14 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:144) - Contacts added in particular period retrieved successfully
+INFO  | 2020-11-03 12:08:56 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-03 12:08:56 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:124) - updated contact details in database successfully
+INFO  | 2020-11-03 12:08:56 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-03 12:08:56 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:143) - Contacts added in particular period retrieved successfully
+INFO  | 2020-11-03 12:12:11 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-03 12:12:11 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:125) - updated contact details in database successfully
+INFO  | 2020-11-03 12:12:11 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-03 12:12:11 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:144) - Contacts added in particular period retrieved successfully
+INFO  | 2020-11-03 12:14:24 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-03 12:14:24 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:126) - updated contact details in database successfully
+INFO  | 2020-11-03 12:14:25 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-03 12:14:25 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:145) - Contacts added in particular period retrieved successfully
+INFO  | 2020-11-03 12:17:36 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-03 12:17:36 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:126) - updated contact details in database successfully
+INFO  | 2020-11-03 12:17:36 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-03 12:17:36 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:145) - Contacts added in particular period retrieved successfully
+INFO  | 2020-11-03 12:19:50 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-03 12:19:50 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:126) - updated contact details in database successfully
+INFO  | 2020-11-03 12:19:50 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-03 12:19:50 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:145) - Contacts added in particular period retrieved successfully
+INFO  | 2020-11-03 12:22:32 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-03 12:22:32 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:125) - updated contact details in database successfully
+INFO  | 2020-11-03 12:22:32 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-03 12:22:32 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:144) - Contacts added in particular period retrieved successfully

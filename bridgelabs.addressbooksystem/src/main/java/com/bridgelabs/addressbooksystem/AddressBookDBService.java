@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,77 @@ public class AddressBookDBService {
 			throw new AddressBookException(e.getMessage());
 		}
 		return contactList;
+	}
+
+	// adds contact to database
+	public boolean addContact(Contact contact) throws AddressBookException {
+		Connection con = null;
+		PreparedStatement conStatement = null;
+		ResultSet resultSet = null;
+		int rowsAffected = -1;
+		con = DatabaseConnector.getConnection();
+		// adds to contact table in database
+		try {
+			con.setAutoCommit(false);
+			String query = "insert into contact (first_name,last_name,address,city,state,zip,phone_no,email_id,date_added) values (?,?,?,?,?,?,?,?,?)";
+			conStatement = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			conStatement.setString(1, contact.getFirstName());
+			conStatement.setString(2, contact.getLastName());
+			conStatement.setString(3, contact.getAddress());
+			conStatement.setString(4, contact.getCity());
+			conStatement.setString(5, contact.getState());
+			conStatement.setInt(6, contact.getZipCode());
+			conStatement.setLong(7, contact.getPhoneNo());
+			conStatement.setString(8, contact.getEmail());
+			conStatement.setDate(9, Date.valueOf(contact.getDateAdded()));
+			rowsAffected = conStatement.executeUpdate();
+			if (rowsAffected == 0) {
+				return false;
+			}
+			resultSet = conStatement.getGeneratedKeys();
+			if (resultSet.next())
+				contact.setContactId(String.valueOf(resultSet.getInt(1)));
+		} catch (SQLException e) {
+			e.printStackTrace();
+			try {
+				con.rollback();
+				return false;
+			} catch (SQLException e1) {
+				throw new AddressBookException(e.getMessage());
+			}
+		}
+		// adds to addressbook_contact table in database
+		try {
+			String query = "insert into addressbook_contact (contact_id,id_addressbook_name,id_addressbook_type) values (?,?,?)";
+			conStatement = con.prepareStatement(query);
+			conStatement.setInt(1, Integer.valueOf(contact.getContactId()));
+			conStatement.setInt(2, Integer.valueOf(contact.getAddressBookId()));
+			conStatement.setInt(3, Integer.valueOf(contact.getAddressBookTypeId()));
+			rowsAffected = conStatement.executeUpdate();
+			if (rowsAffected == 0)
+				return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			try {
+				con.rollback();
+				return false;
+			} catch (SQLException e1) {
+				throw new AddressBookException(e.getMessage());
+			}
+		}
+
+		try {
+			con.commit();
+		} catch (SQLException e) {
+			throw new AddressBookException(e.getMessage());
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				throw new AddressBookException(e.getMessage());
+			}
+		}
+		return true;
 	}
 
 	// updates contact details in database
