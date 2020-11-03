@@ -1,9 +1,11 @@
 package com.bridgelabs.addressbooksystem;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +56,24 @@ public class AddressBookDBService {
 		} catch (SQLException e) {
 			throw new AddressBookException(e.getMessage());
 		}
+	}
+
+	// returns the list of contacts added in particular period
+	public List<Contact> getContactsAddedInParticularPeriod(LocalDate start, LocalDate end)
+			throws AddressBookException {
+		List<Contact> contactList = new ArrayList<>();
+		try (Connection con = DatabaseConnector.getConnection()) {
+			String query = "select * from contact where date_added between ? and ?";
+			PreparedStatement conStatement = con.prepareStatement(query);
+			conStatement.setDate(1, Date.valueOf(start));
+			conStatement.setDate(2, Date.valueOf(end));
+			ResultSet resultSet = conStatement.executeQuery();
+			contactList = getDataInDB(resultSet);
+			AddressBookMain.LOG.info("Contacts added in particular period retrieved successfully");
+		} catch (SQLException e) {
+			throw new AddressBookException(e.getMessage());
+		}
+		return contactList;
 	}
 
 	private List<Contact> getDataInDB(ResultSet resultSet) throws AddressBookException {
