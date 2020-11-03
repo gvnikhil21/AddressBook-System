@@ -47,4 +47,25 @@ public class AddressBookDBController {
 		}
 		return Collections.emptyList();
 	}
+
+	// returns the count of contacts present in a city from database
+	public long getContactsByCityFromDB(String city) {
+		try {
+			return AddressBookDBService.getInstance().getContactsByCity(city);
+		} catch (AddressBookException e) {
+			e.printStackTrace();
+		}
+		return 0l;
+	}
+
+	// returns the count of contacts present in a state from database
+	public long getContactsByStateFromDB(String state) {
+		try {
+			return AddressBookDBService.getInstance().getContactsByState(state);
+		} catch (AddressBookException e) {
+			e.printStackTrace();
+		}
+		return 0l;
+	}
+
 }

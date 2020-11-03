@@ -34,3 +34,7 @@ INFO  | 2020-11-03 10:47:37 | [main] addressbooksystem.AddressBookDBService (Add
 INFO  | 2020-11-03 10:47:37 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:53) - updated contact details in database successfully
 INFO  | 2020-11-03 10:47:37 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:35) - read contact details from database successfully
 INFO  | 2020-11-03 10:47:37 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:72) - Contacts added in particular period retrieved successfully
+INFO  | 2020-11-03 11:12:01 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:35) - read contact details from database successfully
+INFO  | 2020-11-03 11:12:01 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:53) - updated contact details in database successfully
+INFO  | 2020-11-03 11:12:01 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:35) - read contact details from database successfully
+INFO  | 2020-11-03 11:12:01 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:72) - Contacts added in particular period retrieved successfully

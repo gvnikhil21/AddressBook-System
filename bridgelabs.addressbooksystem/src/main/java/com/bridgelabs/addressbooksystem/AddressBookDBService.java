@@ -76,6 +76,39 @@ public class AddressBookDBService {
 		return contactList;
 	}
 
+	// returns the count of contacts present in a city
+	public long getContactsByCity(String city) throws AddressBookException {
+		long count = 0l;
+		try (Connection con = DatabaseConnector.getConnection()) {
+			String query = "select count(contact_id) from contact where city=?";
+			PreparedStatement conStatement = con.prepareStatement(query);
+			conStatement.setString(1, city);
+			ResultSet resultSet = conStatement.executeQuery();
+			if (resultSet.next())
+				count = resultSet.getLong(1);
+		} catch (SQLException e) {
+			throw new AddressBookException(e.getMessage());
+		}
+		return count;
+	}
+
+	// returns the count of contacts present in a state
+	public long getContactsByState(String state) throws AddressBookException {
+		long count = 0l;
+		try (Connection con = DatabaseConnector.getConnection()) {
+			String query = "select count(contact_id) from contact where state=?";
+			PreparedStatement conStatement = con.prepareStatement(query);
+			conStatement.setString(1, state);
+			ResultSet resultSet = conStatement.executeQuery();
+			if (resultSet.next())
+				count = resultSet.getLong(1);
+		} catch (SQLException e) {
+			throw new AddressBookException(e.getMessage());
+		}
+		return count;
+	}
+
+	// returns list of contacts present in result-set for a query retrieved from DB
 	private List<Contact> getDataInDB(ResultSet resultSet) throws AddressBookException {
 		List<Contact> contactList = new ArrayList<>();
 		try {

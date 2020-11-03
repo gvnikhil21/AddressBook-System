@@ -45,4 +45,16 @@ public class AddressBookDBTest {
 				.size();
 		assertEquals(Integer.valueOf(2), count);
 	}
+
+	@Test
+	public void test4_givenCity_WhenContactsRetrievedFromDB_ShouldReturnCorrectCount() {
+		Long count = addressBookDBController.getContactsByCityFromDB("Hyderabad");
+		assertEquals(Long.valueOf(1), count);
+	}
+
+	@Test
+	public void test5_givenState_WhenContactsRetrievedFromDB_ShouldReturnCorrectCount() {
+		Long count = addressBookDBController.getContactsByStateFromDB("Odisha");
+		assertEquals(Long.valueOf(2), count);
+	}
 }
