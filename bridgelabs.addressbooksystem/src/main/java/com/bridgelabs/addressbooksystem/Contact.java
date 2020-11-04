@@ -1,6 +1,7 @@
 package com.bridgelabs.addressbooksystem;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Contact {
 	// variables
@@ -142,6 +143,11 @@ public class Contact {
 
 	public void setAddressBookTypeId(String addressBookTypeId) {
 		this.addressBookTypeId = addressBookTypeId;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(firstName, lastName, phoneNo, email);
 	}
 
 	@Override

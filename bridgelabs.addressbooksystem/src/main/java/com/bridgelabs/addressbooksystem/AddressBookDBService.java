@@ -190,8 +190,8 @@ public class AddressBookDBService {
 				String address = resultSet.getString("address");
 				String city = resultSet.getString("city");
 				String state = resultSet.getString("state");
-				int zipCode = resultSet.getInt("zip");
-				long phoneNo = resultSet.getLong("phone_no");
+				Integer zipCode = resultSet.getInt("zip");
+				Long phoneNo = resultSet.getLong("phone_no");
 				String email = resultSet.getString("email_id");
 				String contactId = String.valueOf(resultSet.getInt("contact_id"));
 				contactList.add(

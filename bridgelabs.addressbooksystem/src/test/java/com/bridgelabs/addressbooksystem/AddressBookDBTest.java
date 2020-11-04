@@ -2,7 +2,10 @@ package com.bridgelabs.addressbooksystem;
 
 import static org.junit.Assert.assertEquals;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
@@ -69,4 +72,24 @@ public class AddressBookDBTest {
 				.orElse(null);
 		assertEquals(expectedContact, actualContact);
 	}
+
+	@Test
+	public void test7_givenMultipleContacts_WhenAdded_ShouldBeInSyncWithDB() {
+		Contact contactArray[] = {
+				new Contact("Rohit", "Sharma", "Ring-Road", "Bangalore", "Karnataka", 530068, 9488996655l,
+						"rohitcba@yahoo.com", LocalDate.now(), "1", "2"),
+				new Contact("Bhuvi", "Kumar", "Himayat-Nagar", "Hyderabad", "Telangana", 500062, 9788665544l,
+						"kumarcba@yahoo.com", LocalDate.now(), "1", "3"),
+				new Contact("Pooran", "Steyn", "Palace-Road", "Mysore", "Karnataka", 530068, 9988997788l,
+						"steyncba@yahoo.com", LocalDate.now(), "1", "3"),
+				new Contact("Garg", "Kaul", "Connaught-Place", "New Delhi", "New Delhi", 110001, 9988996655l,
+						"gargcba@yahoo.com", LocalDate.now(), "1", "2") };
+		addressBookDBController.readContactsFromAddressBookDB();
+		Instant start = Instant.now();
+		addressBookDBController.addMultipleContactsToDB(Arrays.asList(contactArray));
+		Instant end = Instant.now();
+		AddressBookMain.LOG.info("Duration with thread: " + Duration.between(start, end));
+		assertEquals(8, AddressBookDBController.contactList.size());
+	}
+
 }

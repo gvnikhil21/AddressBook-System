@@ -3,7 +3,9 @@ package com.bridgelabs.addressbooksystem;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AddressBookDBController {
 	public static List<Contact> contactList;
@@ -35,6 +37,34 @@ public class AddressBookDBController {
 				contactList.add(contact);
 		} catch (AddressBookException e) {
 			e.printStackTrace();
+		}
+	}
+
+	// add contacts to database
+	public void addMultipleContactsToDB(List<Contact> conList) {
+		Map<Integer, Boolean> mapAdditionStatus = new HashMap<>();
+		conList.stream().forEach(con -> {
+			Runnable task = () -> {
+				mapAdditionStatus.put(con.hashCode(), false);
+				AddressBookMain.LOG.info("Contact being added: " + Thread.currentThread().getName());
+				try {
+					if (AddressBookDBService.getInstance().addContact(con))
+						contactList.add(con);
+					mapAdditionStatus.put(con.hashCode(), true);
+					AddressBookMain.LOG.info("Contact added: " + Thread.currentThread().getName());
+				} catch (AddressBookException e) {
+					e.printStackTrace();
+				}
+			};
+			Thread thread = new Thread(task, con.getFirstName() + " " + con.getLastName());
+			thread.start();
+		});
+		while (mapAdditionStatus.containsValue(false)) {
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				AddressBookMain.LOG.error(e.getMessage());
+			}
 		}
 	}
 
