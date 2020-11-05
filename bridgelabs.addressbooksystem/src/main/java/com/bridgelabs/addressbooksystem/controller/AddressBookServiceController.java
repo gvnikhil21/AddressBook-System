@@ -1,4 +1,4 @@
-package com.bridgelabs.addressbooksystem;
+package com.bridgelabs.addressbooksystem.controller;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -6,6 +6,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.bridgelabs.addressbooksystem.model.AddressBookException;
+import com.bridgelabs.addressbooksystem.model.Contact;
+import com.bridgelabs.addressbooksystem.service.AddressBookDBService;
 
 public class AddressBookServiceController {
 	public List<Contact> contactList;
@@ -78,9 +82,7 @@ public class AddressBookServiceController {
 			}
 		}
 		if (ioService.equals(IOService.REST_IO)) {
-			conList.stream().forEach(con -> {
-				addContact(con, IOService.REST_IO);
-			});
+			conList.stream().forEach(con -> addContact(con, IOService.REST_IO));
 		}
 	}
 

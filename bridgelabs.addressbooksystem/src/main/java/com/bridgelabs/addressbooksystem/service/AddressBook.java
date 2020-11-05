@@ -1,4 +1,4 @@
-package com.bridgelabs.addressbooksystem;
+package com.bridgelabs.addressbooksystem.service;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -9,13 +9,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.bridgelabs.addressbooksystem.model.Contact;
+
 public class AddressBook {
 	private Map<String, List<Contact>> addressBookMap;
 	private Map<String, List<Contact>> cityToContactMap;
 	private Map<String, List<Contact>> stateToContactMap;
+	private static AddressBook addressBook;
 
-	public AddressBook() {
+	// ensures singleton
+	private AddressBook() {
 		addressBookMap = new HashMap<>();
+	}
+
+	// returns the addressBook object which is created only once
+	public static AddressBook getInstance() {
+		if (addressBook == null)
+			addressBook = new AddressBook();
+		return addressBook;
 	}
 
 	// getters and setters

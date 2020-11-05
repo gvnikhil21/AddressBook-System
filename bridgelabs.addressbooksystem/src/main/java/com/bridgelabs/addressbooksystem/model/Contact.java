@@ -1,4 +1,4 @@
-package com.bridgelabs.addressbooksystem;
+package com.bridgelabs.addressbooksystem.model;
 
 import java.time.LocalDate;
 import java.util.Objects;

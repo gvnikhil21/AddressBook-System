@@ -1,11 +1,11 @@
-package com.bridgelabs.addressbooksystem;
+package com.bridgelabs.addressbooksystem.controller;
 
 import java.io.*;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.bridgelabs.addressbooksystem.AddressBookServiceController.IOService;
+import com.bridgelabs.addressbooksystem.controller.AddressBookServiceController.IOService;
 
 public class AddressBookMain {
 	public static Logger LOG = LogManager.getLogger(AddressBookMain.class);
@@ -20,7 +20,6 @@ public class AddressBookMain {
 
 		AddressBookController addressBookController = new AddressBookController();
 		AddressBookServiceController addressBookServiceController = new AddressBookServiceController();
-		AddressBook addressBook = new AddressBook();
 		try {
 			consoleReader = new BufferedReader(new InputStreamReader(System.in));
 			LOG.info("Welcome to AddressBook System!\n");
@@ -35,44 +34,44 @@ public class AddressBookMain {
 
 				switch (choice) {
 				case 1:
-					addressBookController.createContact(addressBook);
-					addressBookController.storeContacts(addressBook);
+					addressBookController.createContact();
+					addressBookController.storeContacts();
 					break;
 				case 2:
-					addressBookController.storeContacts(addressBook);
+					addressBookController.storeContacts();
 					break;
 				case 3:
-					addressBookController.viewAllContacts(addressBook);
+					addressBookController.viewAllContacts();
 					break;
 				case 4:
-					addressBookController.editContact(addressBook);
+					addressBookController.editContact();
 					break;
 				case 45:
-					addressBookController.deleteContact(addressBook);
+					addressBookController.deleteContact();
 					break;
 				case 6:
-					addressBookController.viewContactByCity(addressBook);
+					addressBookController.viewContactByCity();
 					break;
 				case 7:
-					addressBookController.viewContactByState(addressBook);
+					addressBookController.viewContactByState();
 					break;
 				case 8:
-					addressBookController.sortByName(addressBook);
+					addressBookController.sortByName();
 					break;
 				case 9:
-					addressBookController.sortByZipCode(addressBook);
+					addressBookController.sortByZipCode();
 					break;
 				case 10:
-					addressBookController.sortByCity(addressBook);
+					addressBookController.sortByCity();
 					break;
 				case 11:
-					addressBookController.sortByState(addressBook);
+					addressBookController.sortByState();
 					break;
 				case 12:
-					addressBookController.performCSVOperations(addressBook);
+					addressBookController.performCSVOperations();
 					break;
 				case 13:
-					addressBookController.performJSONOperation(addressBook);
+					addressBookController.performJSONOperation();
 					break;
 				case 14:
 					addressBookServiceController.readContacts(IOService.DB_IO);

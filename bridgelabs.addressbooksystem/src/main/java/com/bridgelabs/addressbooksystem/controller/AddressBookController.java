@@ -1,4 +1,4 @@
-package com.bridgelabs.addressbooksystem;
+package com.bridgelabs.addressbooksystem.controller;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -6,6 +6,8 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.bridgelabs.addressbooksystem.model.Contact;
+import com.bridgelabs.addressbooksystem.service.AddressBook;
 import com.google.gson.Gson;
 import com.opencsv.CSVWriter;
 import com.opencsv.bean.CsvToBean;
@@ -19,29 +21,29 @@ public class AddressBookController {
 	private static final String TXT_FILE_PATH = "D:\\AssignmentBridgeLabs\\AddressBook-System\\bridgelabs.addressbooksystem\\Output Files\\contactsBook.txt";
 	private static final String CSV_FILE_PATH = "D:\\\\AssignmentBridgeLabs\\\\AddressBook-System\\\\bridgelabs.addressbooksystem\\\\Output Files\\\\contactsBook.csv";
 	private static final String JSON_FILE_PATH = "D:\\\\AssignmentBridgeLabs\\\\AddressBook-System\\\\bridgelabs.addressbooksystem\\\\Output Files\\\\contactsBook.json";
+	private AddressBook addressBook = AddressBook.getInstance();
 
 	// creates contact in specified addressBook
-	public void createContact(AddressBook addressBook) throws IOException {
+	public void createContact() throws IOException {
 		File file = new File(TXT_FILE_PATH);
 		file.createNewFile();
 		try (BufferedWriter fileWriter = new BufferedWriter(new FileWriter(file, true));) {
 			AddressBookMain.LOG.info("Enter the addressBook name to which you want to add contact");
 			String addressBookName = AddressBookMain.consoleReader.readLine();
-			writeContact(addressBook, fileWriter, addressBookName);
+			writeContact(fileWriter, addressBookName);
 			AddressBookMain.LOG.info("Contact written successfully to contactsBook.txt!");
 		}
 	}
 
 	// writes all contacts in contactsBook.txt
-	public void writeContact(AddressBook addressBook, BufferedWriter fileWriter, String addressBookName)
-			throws IOException {
+	public void writeContact(BufferedWriter fileWriter, String addressBookName) throws IOException {
 		Contact contact = new Contact();
 		createOrEditContact(contact);
 		fileWriter.write(addressBookName + "," + contact.toString());
 	}
 
 	// stores contact to map by reading date from contactsBook.txt file
-	public void storeContacts(AddressBook addressBook) {
+	public void storeContacts() {
 		boolean response = addressBook.storeToAddressBook();
 		if (response) {
 			AddressBookMain.LOG.info("Contact stored successfully!\n");
@@ -51,7 +53,7 @@ public class AddressBookController {
 	}
 
 	// prints all contacts in all addresBooks to console
-	public void viewAllContacts(AddressBook addressBook) {
+	public void viewAllContacts() {
 		Map<String, List<Contact>> contactMap = addressBook.getAddressBookMap();
 		contactMap.entrySet().stream().forEach(entry -> {
 			AddressBookMain.LOG.info("AddressBookName: " + entry.getKey());
@@ -61,7 +63,7 @@ public class AddressBookController {
 	}
 
 	// edits contact
-	public void editContact(AddressBook addressBook) throws IOException {
+	public void editContact() throws IOException {
 		AddressBookMain.LOG.info("Enter the addressBook name from which you want to edit contact");
 		String addressBookName = AddressBookMain.consoleReader.readLine();
 		AddressBookMain.LOG.info("Enter full name (firstName<space>lastName)to edit contact");
@@ -103,7 +105,7 @@ public class AddressBookController {
 	}
 
 	// deletes contact from specified addressBook
-	public void deleteContact(AddressBook addressBook) throws IOException {
+	public void deleteContact() throws IOException {
 		AddressBookMain.LOG.info("Enter the addressBook name from which you want to delete contact");
 		String addressBookName = AddressBookMain.consoleReader.readLine();
 		AddressBookMain.LOG.info("Enter full name (firstName<space>lastName)to remove contact");
@@ -124,7 +126,7 @@ public class AddressBookController {
 	}
 
 	// displays contact by city
-	public void viewContactByCity(AddressBook addressBook) throws IOException {
+	public void viewContactByCity() throws IOException {
 		AddressBookMain.LOG.info("Enter the city name to viewContacts");
 		String cityName = AddressBookMain.consoleReader.readLine();
 		List<Contact> cityContacts = addressBook.viewCityContacts(cityName);
@@ -138,7 +140,7 @@ public class AddressBookController {
 	}
 
 	// displays contact by state
-	public void viewContactByState(AddressBook addressBook) throws IOException {
+	public void viewContactByState() throws IOException {
 		AddressBookMain.LOG.info("Enter the state name to viewContacts");
 		String stateName = AddressBookMain.consoleReader.readLine();
 		List<Contact> stateContacts = addressBook.viewStateContacts(stateName);
@@ -153,7 +155,7 @@ public class AddressBookController {
 	}
 
 	// sorts by name
-	public void sortByName(AddressBook addressBook) throws IOException {
+	public void sortByName() throws IOException {
 		AddressBookMain.LOG.info("Enter the AddressBook name in which you want to sort the contact: ");
 		String addressBookName = AddressBookMain.consoleReader.readLine();
 		List<Contact> sortedContactList = addressBook.sortContactByName(addressBookName);
@@ -161,7 +163,7 @@ public class AddressBookController {
 	}
 
 	// sorts by zip code
-	public void sortByZipCode(AddressBook addressBook) throws IOException {
+	public void sortByZipCode() throws IOException {
 		AddressBookMain.LOG.info("Enter the AddressBook name in which you want to sort the contact: ");
 		String addressBookName = AddressBookMain.consoleReader.readLine();
 		List<Contact> sortedContactList = addressBook.sortContactByZipCode(addressBookName);
@@ -169,7 +171,7 @@ public class AddressBookController {
 	}
 
 	// sorts by city
-	public void sortByCity(AddressBook addressBook) throws IOException {
+	public void sortByCity() throws IOException {
 		AddressBookMain.LOG.info("Enter the AddressBook name in which you want to sort the contact: ");
 		String addressBookName = AddressBookMain.consoleReader.readLine();
 		List<Contact> sortedContactList = addressBook.sortContactByCity(addressBookName);
@@ -177,7 +179,7 @@ public class AddressBookController {
 	}
 
 	// sorts by state
-	public void sortByState(AddressBook addressBook) throws IOException {
+	public void sortByState() throws IOException {
 		AddressBookMain.LOG.info("Enter the AddressBook name in which you want to sort the contact: ");
 		String addressBookName = AddressBookMain.consoleReader.readLine();
 		List<Contact> sortedContactList = addressBook.sortContactByState(addressBookName);
@@ -185,21 +187,19 @@ public class AddressBookController {
 	}
 
 	// prints sorted contacts
-	private void printSortedContacts(List<Contact> sortedContactList, String addressBookName) throws IOException {
+	private void printSortedContacts(List<Contact> sortedContactList, String addressBookName) {
 		if (sortedContactList == null || sortedContactList.size() == 0) {
 			AddressBookMain.LOG.info("Contact list in " + addressBookName + " addressBook empty!\n");
 		} else {
 			AddressBookMain.LOG.info("Contacts in " + addressBookName + " addressBook: ");
-			sortedContactList.stream().forEach(con -> {
-				AddressBookMain.LOG.info(con.getString());
-			});
+			sortedContactList.stream().forEach(con -> AddressBookMain.LOG.info(con.getString()));
 			AddressBookMain.LOG.info("");
 		}
 	}
 
 	// performs csv operations
-	public void performCSVOperations(AddressBook addressBook) throws IOException {
-		writeToCSVFile(addressBook);
+	public void performCSVOperations() throws IOException {
+		writeToCSVFile();
 		readFromCSVFile();
 		AddressBookMain.LOG.info("Scuccesfully performed CSV Operations!\n");
 	}
@@ -216,7 +216,7 @@ public class AddressBookController {
 	}
 
 	// writes details of contact to csv file
-	private void writeToCSVFile(AddressBook addressBook) throws IOException {
+	private void writeToCSVFile() throws IOException {
 		Map<String, List<Contact>> addressBookMap = addressBook.getAddressBookMap();
 		List<Contact> contactList = addressBookMap.values().stream().flatMap(list -> list.stream())
 				.collect(Collectors.toList());
@@ -233,7 +233,7 @@ public class AddressBookController {
 	}
 
 	// performs Json operations
-	public void performJSONOperation(AddressBook addressBook) throws IOException {
+	public void performJSONOperation() throws IOException {
 		Gson gson = writeToJSOnFileFromCSVfile();
 		readFromJSONFile(gson);
 		AddressBookMain.LOG.info("Scuccesfully performed JSON Operations!\n");

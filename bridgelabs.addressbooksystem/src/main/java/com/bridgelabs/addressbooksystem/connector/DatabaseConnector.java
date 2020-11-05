@@ -1,8 +1,10 @@
-package com.bridgelabs.addressbooksystem;
+package com.bridgelabs.addressbooksystem.connector;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import com.bridgelabs.addressbooksystem.model.AddressBookException;
 
 public class DatabaseConnector {
 	private static Connection con = null;

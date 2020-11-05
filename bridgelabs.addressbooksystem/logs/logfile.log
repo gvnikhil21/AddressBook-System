@@ -733,3 +733,166 @@ INFO  | 2020-11-05 21:48:11 | [main] addressbooksystem.AddressBookRESTAPITest (A
     "contactId": 4
   }
 ]
+INFO  | 2020-11-05 22:35:12 | [main] service.AddressBookDBService (AddressBookDBService.java:41) - read contact details from database successfully
+INFO  | 2020-11-05 22:35:12 | [main] service.AddressBookDBService (AddressBookDBService.java:130) - updated contact details in database successfully
+INFO  | 2020-11-05 22:35:12 | [main] service.AddressBookDBService (AddressBookDBService.java:149) - Contacts added in particular period retrieved successfully
+INFO  | 2020-11-05 22:35:12 | [Garg Kaul] controller.AddressBookServiceController (AddressBookServiceController.java:67) - Contact being added: Garg Kaul
+INFO  | 2020-11-05 22:35:12 | [Bhuvi Kumar] controller.AddressBookServiceController (AddressBookServiceController.java:67) - Contact being added: Bhuvi Kumar
+INFO  | 2020-11-05 22:35:12 | [Pooran Steyn] controller.AddressBookServiceController (AddressBookServiceController.java:67) - Contact being added: Pooran Steyn
+INFO  | 2020-11-05 22:35:12 | [Rohit Sharma] controller.AddressBookServiceController (AddressBookServiceController.java:67) - Contact being added: Rohit Sharma
+INFO  | 2020-11-05 22:35:12 | [main] addressbooksystem.AddressBookDBTest (AddressBookDBTest.java:93) - Duration with thread: PT0.002S
+INFO  | 2020-11-05 22:36:26 | [main] service.AddressBookDBService (AddressBookDBService.java:41) - read contact details from database successfully
+INFO  | 2020-11-05 22:36:26 | [main] service.AddressBookDBService (AddressBookDBService.java:130) - updated contact details in database successfully
+INFO  | 2020-11-05 22:36:26 | [main] service.AddressBookDBService (AddressBookDBService.java:149) - Contacts added in particular period retrieved successfully
+INFO  | 2020-11-05 22:36:26 | [Rohit Sharma] controller.AddressBookServiceController (AddressBookServiceController.java:67) - Contact being added: Rohit Sharma
+INFO  | 2020-11-05 22:36:26 | [Bhuvi Kumar] controller.AddressBookServiceController (AddressBookServiceController.java:67) - Contact being added: Bhuvi Kumar
+INFO  | 2020-11-05 22:36:26 | [Pooran Steyn] controller.AddressBookServiceController (AddressBookServiceController.java:67) - Contact being added: Pooran Steyn
+INFO  | 2020-11-05 22:36:26 | [Garg Kaul] controller.AddressBookServiceController (AddressBookServiceController.java:67) - Contact being added: Garg Kaul
+INFO  | 2020-11-05 22:36:26 | [Garg Kaul] controller.AddressBookServiceController (AddressBookServiceController.java:70) - Contact added: Garg Kaul
+INFO  | 2020-11-05 22:36:26 | [Rohit Sharma] controller.AddressBookServiceController (AddressBookServiceController.java:70) - Contact added: Rohit Sharma
+INFO  | 2020-11-05 22:36:26 | [Pooran Steyn] controller.AddressBookServiceController (AddressBookServiceController.java:70) - Contact added: Pooran Steyn
+INFO  | 2020-11-05 22:36:26 | [Bhuvi Kumar] controller.AddressBookServiceController (AddressBookServiceController.java:70) - Contact added: Bhuvi Kumar
+INFO  | 2020-11-05 22:36:26 | [main] addressbooksystem.AddressBookDBTest (AddressBookDBTest.java:93) - Duration with thread: PT0.137S
+INFO  | 2020-11-05 22:38:30 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:101) - Contact details(in JSON server): 
+[]
+INFO  | 2020-11-05 22:38:30 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:101) - Contact details(in JSON server): 
+[
+  {
+    "firstName": "Hinata",
+    "lastName": "Hyuga",
+    "address": "Himayat-Nagar",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "zipCode": 500062,
+    "phoneNo": 7777777777,
+    "email": "hinata@gmail.com",
+    "contactId": 1
+  },
+  {
+    "firstName": "Naruto",
+    "lastName": "Uzumaki",
+    "address": "Connaught-Place",
+    "city": "New Delhi",
+    "state": "New Delhi",
+    "zipCode": 1100042,
+    "phoneNo": 8888888888,
+    "email": "naruto@gmail.com",
+    "contactId": 2
+  },
+  {
+    "firstName": "Endou",
+    "lastName": "Mamoru",
+    "address": "Thane",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "zipCode": 4500230,
+    "phoneNo": 5555555555,
+    "email": "endou@gmail.com",
+    "contactId": 3
+  },
+  {
+    "firstName": "Natsumi",
+    "lastName": "Raimon",
+    "address": "Whitefield",
+    "city": "Bangalore",
+    "state": "Karnataka",
+    "zipCode": 530068,
+    "phoneNo": 4444444444,
+    "email": "natsumi@gmail.com",
+    "contactId": 4
+  }
+]
+INFO  | 2020-11-05 22:38:30 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:101) - Contact details(in JSON server): 
+[
+  {
+    "firstName": "Hinata",
+    "lastName": "Hyuga",
+    "address": "Himayat-Nagar",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "zipCode": 500062,
+    "phoneNo": 7777777777,
+    "email": "hinata@gmail.com",
+    "contactId": 1
+  },
+  {
+    "firstName": "Naruto",
+    "lastName": "Uzumaki",
+    "address": "Connaught-Place",
+    "city": "New Delhi",
+    "state": "New Delhi",
+    "zipCode": 1100042,
+    "phoneNo": 8888888888,
+    "email": "naruto@gmail.com",
+    "contactId": 2
+  },
+  {
+    "firstName": "Endou",
+    "lastName": "Mamoru",
+    "address": "Thane",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "zipCode": 4500230,
+    "phoneNo": 5555555555,
+    "email": "endou@gmail.com",
+    "contactId": 3
+  },
+  {
+    "firstName": "Natsumi",
+    "lastName": "Raimon",
+    "address": "Whitefield",
+    "city": "Bangalore",
+    "state": "Karnataka",
+    "zipCode": 530068,
+    "phoneNo": 4444444444,
+    "email": "natsumi@gmail.com",
+    "contactId": 4
+  }
+]
+INFO  | 2020-11-05 22:38:31 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:101) - Contact details(in JSON server): 
+[
+  {
+    "firstName": "Hinata",
+    "lastName": "Hyuga",
+    "address": "Himayat-Nagar",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "zipCode": 500062,
+    "phoneNo": 1234567890,
+    "email": "hinata@gmail.com",
+    "contactId": 1
+  },
+  {
+    "firstName": "Naruto",
+    "lastName": "Uzumaki",
+    "address": "Connaught-Place",
+    "city": "New Delhi",
+    "state": "New Delhi",
+    "zipCode": 1100042,
+    "phoneNo": 8888888888,
+    "email": "naruto@gmail.com",
+    "contactId": 2
+  },
+  {
+    "firstName": "Endou",
+    "lastName": "Mamoru",
+    "address": "Thane",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "zipCode": 4500230,
+    "phoneNo": 5555555555,
+    "email": "endou@gmail.com",
+    "contactId": 3
+  },
+  {
+    "firstName": "Natsumi",
+    "lastName": "Raimon",
+    "address": "Whitefield",
+    "city": "Bangalore",
+    "state": "Karnataka",
+    "zipCode": 530068,
+    "phoneNo": 4444444444,
+    "email": "natsumi@gmail.com",
+    "contactId": 4
+  }
+]

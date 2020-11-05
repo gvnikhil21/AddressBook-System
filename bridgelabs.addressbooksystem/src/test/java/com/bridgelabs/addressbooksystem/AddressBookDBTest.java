@@ -12,7 +12,10 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import com.bridgelabs.addressbooksystem.AddressBookServiceController.IOService;
+import com.bridgelabs.addressbooksystem.controller.AddressBookMain;
+import com.bridgelabs.addressbooksystem.controller.AddressBookServiceController;
+import com.bridgelabs.addressbooksystem.controller.AddressBookServiceController.IOService;
+import com.bridgelabs.addressbooksystem.model.Contact;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AddressBookDBTest {
