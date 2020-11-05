@@ -5,6 +5,8 @@ import java.io.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.bridgelabs.addressbooksystem.AddressBookServiceController.IOService;
+
 public class AddressBookMain {
 	public static Logger LOG = LogManager.getLogger(AddressBookMain.class);
 	public static BufferedReader consoleReader;
@@ -17,6 +19,7 @@ public class AddressBookMain {
 		outputFile.mkdir();
 
 		AddressBookController addressBookController = new AddressBookController();
+		AddressBookServiceController addressBookServiceController = new AddressBookServiceController();
 		AddressBook addressBook = new AddressBook();
 		try {
 			consoleReader = new BufferedReader(new InputStreamReader(System.in));
@@ -72,7 +75,7 @@ public class AddressBookMain {
 					addressBookController.performJSONOperation(addressBook);
 					break;
 				case 14:
-					AddressBookDBController.getInstance().readContactsFromAddressBookDB();
+					addressBookServiceController.readContacts(IOService.DB_IO);
 					break;
 				case 15:
 					LOG.info("You have quit the program!");

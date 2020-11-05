@@ -12,19 +12,21 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import com.bridgelabs.addressbooksystem.AddressBookServiceController.IOService;
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AddressBookDBTest {
-	private static AddressBookDBController addressBookDBController;
+	private static AddressBookServiceController addressBookDBController;
 
 	@BeforeClass
 	public static void initialize() {
-		addressBookDBController = AddressBookDBController.getInstance();
+		addressBookDBController = new AddressBookServiceController();
 	}
 
 	@Test
 	public void test1_readDataFromDB_shouldreturnCorrectCOunt() {
-		addressBookDBController.readContactsFromAddressBookDB();
-		Integer count = AddressBookDBController.contactList.size();
+		addressBookDBController.readContacts(IOService.DB_IO);
+		Integer count = addressBookDBController.contactList.size();
 		assertEquals(Integer.valueOf(4), count);
 	}
 
@@ -32,10 +34,8 @@ public class AddressBookDBTest {
 	public void test2_givenData_WhenUpdated_ShouldBeInSyncWithDB() {
 		Long expectedPhone = 9988776654l;
 		Long phone = null;
-		addressBookDBController.updatePhoneContact("Gv", "Nikhil", expectedPhone);
-		Contact contact = AddressBookDBController.contactList.stream()
-				.filter(con -> (con.getFirstName().equals("Gv")) && (con.getLastName().equals("Nikhil"))).findFirst()
-				.orElse(null);
+		addressBookDBController.updatePhoneContact(IOService.DB_IO, "Gv", "Nikhil", expectedPhone);
+		Contact contact = addressBookDBController.getContact("Gv", "Nikhil");
 		if (contact != null)
 			phone = contact.getPhoneNo();
 		assertEquals(expectedPhone, phone);
@@ -66,8 +66,8 @@ public class AddressBookDBTest {
 		Contact expectedContact = new Contact("Manish", "Sharma", "Ring-Road", "Hyderabad", "Telangana", 500062,
 				7788996655l, "sharmacba@yahoo.com", LocalDate.now(), "1", "2");
 		Contact actualContact = null;
-		addressBookDBController.addContactToDB(expectedContact);
-		actualContact = AddressBookDBController.contactList.stream()
+		addressBookDBController.addContact(expectedContact, IOService.DB_IO);
+		actualContact = addressBookDBController.contactList.stream()
 				.filter(con -> con.getFirstName().equals("Manish") && con.getLastName().equals("Sharma")).findFirst()
 				.orElse(null);
 		assertEquals(expectedContact, actualContact);
@@ -84,12 +84,11 @@ public class AddressBookDBTest {
 						"steyncba@yahoo.com", LocalDate.now(), "1", "3"),
 				new Contact("Garg", "Kaul", "Connaught-Place", "New Delhi", "New Delhi", 110001, 9988996655l,
 						"gargcba@yahoo.com", LocalDate.now(), "1", "2") };
-		addressBookDBController.readContactsFromAddressBookDB();
 		Instant start = Instant.now();
 		addressBookDBController.addMultipleContactsToDB(Arrays.asList(contactArray));
 		Instant end = Instant.now();
 		AddressBookMain.LOG.info("Duration with thread: " + Duration.between(start, end));
-		assertEquals(8, AddressBookDBController.contactList.size());
+		assertEquals(9, addressBookDBController.contactList.size());
 	}
 
 }

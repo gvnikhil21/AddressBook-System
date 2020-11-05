@@ -10,10 +10,10 @@ public class Contact {
 	private String address;
 	private String city;
 	private String state;
-	private int zipCode;
-	private long phoneNo;
+	private Integer zipCode;
+	private Long phoneNo;
 	private String email;
-	private String contactId;
+	private Integer contactId;
 	private LocalDate dateAdded;
 	private String addressBookId;
 	private String addressBookTypeId;
@@ -35,7 +35,7 @@ public class Contact {
 	}
 
 	public Contact(String firstName, String lastName, String address, String city, String state, int zipCode,
-			long phoneNo, String email, String contactId) {
+			long phoneNo, String email, int contactId) {
 		this(firstName, lastName, address, city, state, zipCode, phoneNo, email);
 		this.contactId = contactId;
 	}
@@ -46,6 +46,12 @@ public class Contact {
 		this.dateAdded = dateAdded;
 		this.addressBookId = addressBookId;
 		this.addressBookTypeId = addressBookTypeId;
+	}
+
+	public Contact(int contactId, String firstName, String lastName, String address, String city, String state,
+			int zipCode, long phoneNo, String email) {
+		this(firstName, lastName, address, city, state, zipCode, phoneNo, email);
+		this.contactId = contactId;
 	}
 
 	// getters and setters
@@ -113,11 +119,11 @@ public class Contact {
 		this.email = email;
 	}
 
-	public String getContactId() {
+	public Integer getContactId() {
 		return contactId;
 	}
 
-	public void setContactId(String contactId) {
+	public void setContactId(int contactId) {
 		this.contactId = contactId;
 	}
 

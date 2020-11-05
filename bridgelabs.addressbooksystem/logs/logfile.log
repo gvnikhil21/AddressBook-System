@@ -140,3 +140,187 @@ INFO  | 2020-11-04 11:20:24 | [Pooran Steyn] addressbooksystem.AddressBookDBCont
 INFO  | 2020-11-04 11:20:24 | [Rohit Sharma] addressbooksystem.AddressBookDBController (AddressBookDBController.java:54) - Contact added: Rohit Sharma
 INFO  | 2020-11-04 11:20:24 | [Bhuvi Kumar] addressbooksystem.AddressBookDBController (AddressBookDBController.java:54) - Contact added: Bhuvi Kumar
 INFO  | 2020-11-04 11:20:24 | [main] addressbooksystem.AddressBookDBTest (AddressBookDBTest.java:91) - Duration with thread: PT0.096S
+INFO  | 2020-11-05 17:53:18 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-05 17:53:18 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:125) - updated contact details in database successfully
+INFO  | 2020-11-05 17:53:18 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:144) - Contacts added in particular period retrieved successfully
+INFO  | 2020-11-05 17:53:18 | [Rohit Sharma] addressbooksystem.AddressBookDBController (AddressBookDBController.java:60) - Contact being added: Rohit Sharma
+INFO  | 2020-11-05 17:53:18 | [Pooran Steyn] addressbooksystem.AddressBookDBController (AddressBookDBController.java:60) - Contact being added: Pooran Steyn
+INFO  | 2020-11-05 17:53:18 | [Bhuvi Kumar] addressbooksystem.AddressBookDBController (AddressBookDBController.java:60) - Contact being added: Bhuvi Kumar
+INFO  | 2020-11-05 17:53:18 | [Garg Kaul] addressbooksystem.AddressBookDBController (AddressBookDBController.java:60) - Contact being added: Garg Kaul
+INFO  | 2020-11-05 17:53:18 | [Rohit Sharma] addressbooksystem.AddressBookDBController (AddressBookDBController.java:63) - Contact added: Rohit Sharma
+INFO  | 2020-11-05 17:53:18 | [Bhuvi Kumar] addressbooksystem.AddressBookDBController (AddressBookDBController.java:63) - Contact added: Bhuvi Kumar
+INFO  | 2020-11-05 17:53:18 | [Pooran Steyn] addressbooksystem.AddressBookDBController (AddressBookDBController.java:63) - Contact added: Pooran Steyn
+INFO  | 2020-11-05 17:53:18 | [Garg Kaul] addressbooksystem.AddressBookDBController (AddressBookDBController.java:63) - Contact added: Garg Kaul
+INFO  | 2020-11-05 17:53:18 | [main] addressbooksystem.AddressBookDBTest (AddressBookDBTest.java:90) - Duration with thread: PT0.093S
+INFO  | 2020-11-05 17:53:38 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-05 17:53:38 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:125) - updated contact details in database successfully
+INFO  | 2020-11-05 17:53:38 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:144) - Contacts added in particular period retrieved successfully
+INFO  | 2020-11-05 17:53:38 | [Rohit Sharma] addressbooksystem.AddressBookDBController (AddressBookDBController.java:60) - Contact being added: Rohit Sharma
+INFO  | 2020-11-05 17:53:38 | [Pooran Steyn] addressbooksystem.AddressBookDBController (AddressBookDBController.java:60) - Contact being added: Pooran Steyn
+INFO  | 2020-11-05 17:53:38 | [Bhuvi Kumar] addressbooksystem.AddressBookDBController (AddressBookDBController.java:60) - Contact being added: Bhuvi Kumar
+INFO  | 2020-11-05 17:53:38 | [Garg Kaul] addressbooksystem.AddressBookDBController (AddressBookDBController.java:60) - Contact being added: Garg Kaul
+INFO  | 2020-11-05 17:53:38 | [Bhuvi Kumar] addressbooksystem.AddressBookDBController (AddressBookDBController.java:63) - Contact added: Bhuvi Kumar
+INFO  | 2020-11-05 17:53:38 | [Garg Kaul] addressbooksystem.AddressBookDBController (AddressBookDBController.java:63) - Contact added: Garg Kaul
+INFO  | 2020-11-05 17:53:38 | [Pooran Steyn] addressbooksystem.AddressBookDBController (AddressBookDBController.java:63) - Contact added: Pooran Steyn
+INFO  | 2020-11-05 17:53:38 | [Rohit Sharma] addressbooksystem.AddressBookDBController (AddressBookDBController.java:63) - Contact added: Rohit Sharma
+INFO  | 2020-11-05 17:53:38 | [main] addressbooksystem.AddressBookDBTest (AddressBookDBTest.java:90) - Duration with thread: PT0.099S
+INFO  | 2020-11-05 17:56:54 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-05 17:56:54 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:125) - updated contact details in database successfully
+INFO  | 2020-11-05 17:56:54 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:144) - Contacts added in particular period retrieved successfully
+INFO  | 2020-11-05 17:56:54 | [Pooran Steyn] addressbooksystem.AddressBookDBController (AddressBookDBController.java:53) - Contact being added: Pooran Steyn
+INFO  | 2020-11-05 17:56:54 | [Bhuvi Kumar] addressbooksystem.AddressBookDBController (AddressBookDBController.java:53) - Contact being added: Bhuvi Kumar
+INFO  | 2020-11-05 17:56:54 | [Rohit Sharma] addressbooksystem.AddressBookDBController (AddressBookDBController.java:53) - Contact being added: Rohit Sharma
+INFO  | 2020-11-05 17:56:54 | [Garg Kaul] addressbooksystem.AddressBookDBController (AddressBookDBController.java:53) - Contact being added: Garg Kaul
+INFO  | 2020-11-05 17:56:54 | [Garg Kaul] addressbooksystem.AddressBookDBController (AddressBookDBController.java:56) - Contact added: Garg Kaul
+INFO  | 2020-11-05 17:56:54 | [Pooran Steyn] addressbooksystem.AddressBookDBController (AddressBookDBController.java:56) - Contact added: Pooran Steyn
+INFO  | 2020-11-05 17:56:54 | [Rohit Sharma] addressbooksystem.AddressBookDBController (AddressBookDBController.java:56) - Contact added: Rohit Sharma
+INFO  | 2020-11-05 17:56:54 | [Bhuvi Kumar] addressbooksystem.AddressBookDBController (AddressBookDBController.java:56) - Contact added: Bhuvi Kumar
+INFO  | 2020-11-05 17:56:54 | [main] addressbooksystem.AddressBookDBTest (AddressBookDBTest.java:90) - Duration with thread: PT0.062S
+INFO  | 2020-11-05 17:57:58 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-05 17:57:58 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:125) - updated contact details in database successfully
+INFO  | 2020-11-05 17:57:58 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:144) - Contacts added in particular period retrieved successfully
+INFO  | 2020-11-05 17:57:58 | [Pooran Steyn] addressbooksystem.AddressBookDBController (AddressBookDBController.java:53) - Contact being added: Pooran Steyn
+INFO  | 2020-11-05 17:57:58 | [Rohit Sharma] addressbooksystem.AddressBookDBController (AddressBookDBController.java:53) - Contact being added: Rohit Sharma
+INFO  | 2020-11-05 17:57:58 | [Garg Kaul] addressbooksystem.AddressBookDBController (AddressBookDBController.java:53) - Contact being added: Garg Kaul
+INFO  | 2020-11-05 17:57:58 | [Bhuvi Kumar] addressbooksystem.AddressBookDBController (AddressBookDBController.java:53) - Contact being added: Bhuvi Kumar
+INFO  | 2020-11-05 17:57:58 | [Rohit Sharma] addressbooksystem.AddressBookDBController (AddressBookDBController.java:56) - Contact added: Rohit Sharma
+INFO  | 2020-11-05 17:57:58 | [Garg Kaul] addressbooksystem.AddressBookDBController (AddressBookDBController.java:56) - Contact added: Garg Kaul
+INFO  | 2020-11-05 17:57:58 | [Pooran Steyn] addressbooksystem.AddressBookDBController (AddressBookDBController.java:56) - Contact added: Pooran Steyn
+INFO  | 2020-11-05 17:57:58 | [Bhuvi Kumar] addressbooksystem.AddressBookDBController (AddressBookDBController.java:56) - Contact added: Bhuvi Kumar
+INFO  | 2020-11-05 17:57:58 | [main] addressbooksystem.AddressBookDBTest (AddressBookDBTest.java:90) - Duration with thread: PT0.087S
+INFO  | 2020-11-05 17:58:23 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-05 17:58:23 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:125) - updated contact details in database successfully
+INFO  | 2020-11-05 17:58:23 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:144) - Contacts added in particular period retrieved successfully
+INFO  | 2020-11-05 17:58:23 | [Bhuvi Kumar] addressbooksystem.AddressBookDBController (AddressBookDBController.java:53) - Contact being added: Bhuvi Kumar
+INFO  | 2020-11-05 17:58:23 | [Rohit Sharma] addressbooksystem.AddressBookDBController (AddressBookDBController.java:53) - Contact being added: Rohit Sharma
+INFO  | 2020-11-05 17:58:23 | [Garg Kaul] addressbooksystem.AddressBookDBController (AddressBookDBController.java:53) - Contact being added: Garg Kaul
+INFO  | 2020-11-05 17:58:23 | [Pooran Steyn] addressbooksystem.AddressBookDBController (AddressBookDBController.java:53) - Contact being added: Pooran Steyn
+INFO  | 2020-11-05 17:58:23 | [Bhuvi Kumar] addressbooksystem.AddressBookDBController (AddressBookDBController.java:56) - Contact added: Bhuvi Kumar
+INFO  | 2020-11-05 17:58:23 | [Garg Kaul] addressbooksystem.AddressBookDBController (AddressBookDBController.java:56) - Contact added: Garg Kaul
+INFO  | 2020-11-05 17:58:23 | [Pooran Steyn] addressbooksystem.AddressBookDBController (AddressBookDBController.java:56) - Contact added: Pooran Steyn
+INFO  | 2020-11-05 17:58:23 | [Rohit Sharma] addressbooksystem.AddressBookDBController (AddressBookDBController.java:56) - Contact added: Rohit Sharma
+INFO  | 2020-11-05 17:58:23 | [main] addressbooksystem.AddressBookDBTest (AddressBookDBTest.java:90) - Duration with thread: PT0.094S
+INFO  | 2020-11-05 17:59:08 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-05 17:59:08 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:125) - updated contact details in database successfully
+INFO  | 2020-11-05 17:59:08 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:144) - Contacts added in particular period retrieved successfully
+INFO  | 2020-11-05 17:59:08 | [Bhuvi Kumar] addressbooksystem.AddressBookDBController (AddressBookDBController.java:53) - Contact being added: Bhuvi Kumar
+INFO  | 2020-11-05 17:59:08 | [Rohit Sharma] addressbooksystem.AddressBookDBController (AddressBookDBController.java:53) - Contact being added: Rohit Sharma
+INFO  | 2020-11-05 17:59:08 | [Pooran Steyn] addressbooksystem.AddressBookDBController (AddressBookDBController.java:53) - Contact being added: Pooran Steyn
+INFO  | 2020-11-05 17:59:08 | [Garg Kaul] addressbooksystem.AddressBookDBController (AddressBookDBController.java:53) - Contact being added: Garg Kaul
+INFO  | 2020-11-05 17:59:08 | [Garg Kaul] addressbooksystem.AddressBookDBController (AddressBookDBController.java:56) - Contact added: Garg Kaul
+INFO  | 2020-11-05 17:59:08 | [Bhuvi Kumar] addressbooksystem.AddressBookDBController (AddressBookDBController.java:56) - Contact added: Bhuvi Kumar
+INFO  | 2020-11-05 17:59:08 | [Pooran Steyn] addressbooksystem.AddressBookDBController (AddressBookDBController.java:56) - Contact added: Pooran Steyn
+INFO  | 2020-11-05 17:59:08 | [Rohit Sharma] addressbooksystem.AddressBookDBController (AddressBookDBController.java:56) - Contact added: Rohit Sharma
+INFO  | 2020-11-05 17:59:08 | [main] addressbooksystem.AddressBookDBTest (AddressBookDBTest.java:90) - Duration with thread: PT0.052S
+INFO  | 2020-11-05 17:59:54 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:36) - read contact details from database successfully
+INFO  | 2020-11-05 17:59:54 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:125) - updated contact details in database successfully
+INFO  | 2020-11-05 17:59:54 | [main] addressbooksystem.AddressBookDBService (AddressBookDBService.java:144) - Contacts added in particular period retrieved successfully
+INFO  | 2020-11-05 17:59:54 | [Bhuvi Kumar] addressbooksystem.AddressBookDBController (AddressBookDBController.java:53) - Contact being added: Bhuvi Kumar
+INFO  | 2020-11-05 17:59:54 | [Rohit Sharma] addressbooksystem.AddressBookDBController (AddressBookDBController.java:53) - Contact being added: Rohit Sharma
+INFO  | 2020-11-05 17:59:54 | [Garg Kaul] addressbooksystem.AddressBookDBController (AddressBookDBController.java:53) - Contact being added: Garg Kaul
+INFO  | 2020-11-05 17:59:54 | [Pooran Steyn] addressbooksystem.AddressBookDBController (AddressBookDBController.java:53) - Contact being added: Pooran Steyn
+INFO  | 2020-11-05 17:59:54 | [Rohit Sharma] addressbooksystem.AddressBookDBController (AddressBookDBController.java:56) - Contact added: Rohit Sharma
+INFO  | 2020-11-05 17:59:54 | [Garg Kaul] addressbooksystem.AddressBookDBController (AddressBookDBController.java:56) - Contact added: Garg Kaul
+INFO  | 2020-11-05 17:59:54 | [Bhuvi Kumar] addressbooksystem.AddressBookDBController (AddressBookDBController.java:56) - Contact added: Bhuvi Kumar
+INFO  | 2020-11-05 17:59:54 | [Pooran Steyn] addressbooksystem.AddressBookDBController (AddressBookDBController.java:56) - Contact added: Pooran Steyn
+INFO  | 2020-11-05 17:59:54 | [main] addressbooksystem.AddressBookDBTest (AddressBookDBTest.java:90) - Duration with thread: PT0.107S
+INFO  | 2020-11-05 18:33:11 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:44) - Contact details(in JSON server): 
+[]
+INFO  | 2020-11-05 18:33:11 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:44) - Contact details(in JSON server): 
+[]
+INFO  | 2020-11-05 18:35:53 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:44) - Contact details(in JSON server): 
+[
+  {
+    "firstName": "Gv",
+    "lastName": "Nikhil",
+    "address": "main-road",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "zipCode": 500062,
+    "phoneNo": 7896541230,
+    "email": "abc@gmail.com",
+    "contactId": 1
+  }
+]
+INFO  | 2020-11-05 18:35:54 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:44) - Contact details(in JSON server): 
+[
+  {
+    "firstName": "Gv",
+    "lastName": "Nikhil",
+    "address": "main-road",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "zipCode": 500062,
+    "phoneNo": 7896541230,
+    "email": "abc@gmail.com",
+    "contactId": 1
+  }
+]
+INFO  | 2020-11-05 18:36:33 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:44) - Contact details(in JSON server): 
+[]
+INFO  | 2020-11-05 18:36:33 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:44) - Contact details(in JSON server): 
+[]
+INFO  | 2020-11-05 18:36:59 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:47) - Contact details(in JSON server): 
+[]
+INFO  | 2020-11-05 18:36:59 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:47) - Contact details(in JSON server): 
+[
+  {
+    "firstName": "Gv",
+    "lastName": "Nikhil",
+    "address": "main-road",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "zipCode": 500062,
+    "phoneNo": 7896541230,
+    "email": "abc@gmail.com",
+    "contactId": 1
+  }
+]
+INFO  | 2020-11-05 18:37:55 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:49) - Contact details(in JSON server): 
+[]
+INFO  | 2020-11-05 18:37:55 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:49) - Contact details(in JSON server): 
+[
+  {
+    "firstName": "Gv",
+    "lastName": "Nikhil",
+    "address": "main-road",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "zipCode": 500062,
+    "phoneNo": 7896541230,
+    "email": "abc@gmail.com",
+    "contactId": 1
+  }
+]
+INFO  | 2020-11-05 18:39:03 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:49) - Contact details(in JSON server): 
+[]
+INFO  | 2020-11-05 18:39:03 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:49) - Contact details(in JSON server): 
+[
+  {
+    "firstName": "Gv",
+    "lastName": "Nikhil",
+    "address": "main-road",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "zipCode": 500062,
+    "phoneNo": 7896541230,
+    "email": "abc@gmail.com",
+    "contactId": 1
+  }
+]
+INFO  | 2020-11-05 18:40:28 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:50) - Contact details(in JSON server): 
+[]
+INFO  | 2020-11-05 18:40:29 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:50) - Contact details(in JSON server): 
+[
+  {
+    "firstName": "Gv",
+    "lastName": "Nikhil",
+    "address": "main-road",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "zipCode": 500062,
+    "phoneNo": 7896541230,
+    "email": "abc@gmail.com",
+    "contactId": 1
+  }
+]

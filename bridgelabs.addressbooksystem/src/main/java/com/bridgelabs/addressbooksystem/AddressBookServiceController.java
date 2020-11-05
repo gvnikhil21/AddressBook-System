@@ -7,37 +7,50 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AddressBookDBController {
-	public static List<Contact> contactList;
-	public static AddressBookDBController addressBookDBController;
+public class AddressBookServiceController {
+	public List<Contact> contactList;
 
-	private AddressBookDBController() {
+	public enum IOService {
+		DB_IO, REST_IO
+	}
+
+	public AddressBookServiceController() {
 		contactList = new ArrayList<>();
 	}
 
-	public static AddressBookDBController getInstance() {
-		if (addressBookDBController == null)
-			addressBookDBController = new AddressBookDBController();
-		return addressBookDBController;
+	public AddressBookServiceController(List<Contact> contactList) {
+		this();
+		contactList.stream().forEach(con -> this.contactList.add(con));
 	}
 
-	// reads details from database and stores to cntactList
-	public void readContactsFromAddressBookDB() {
-		try {
-			contactList = AddressBookDBService.getInstance().readContactsInAddressBook();
-		} catch (AddressBookException e) {
-			e.printStackTrace();
+	// reads details from database or json-server and stores to cntactList
+	public void readContacts(IOService ioService) {
+		if (ioService.equals(IOService.DB_IO)) {
+			try {
+				contactList = AddressBookDBService.getInstance().readContactsInAddressBook();
+			} catch (AddressBookException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
-	// add contacts to database
-	public void addContactToDB(Contact contact) {
-		try {
-			if (AddressBookDBService.getInstance().addContact(contact))
-				contactList.add(contact);
-		} catch (AddressBookException e) {
-			e.printStackTrace();
+	// add contacts to database or json server
+	public boolean addContact(Contact contact, IOService ioService) {
+		if (ioService.equals(IOService.DB_IO)) {
+			try {
+				if (AddressBookDBService.getInstance().addContact(contact)) {
+					contactList.add(contact);
+					return true;
+				}
+			} catch (AddressBookException e) {
+				e.printStackTrace();
+			}
 		}
+		if (ioService.equals(IOService.REST_IO)) {
+			contactList.add(contact);
+			return true;
+		}
+		return false;
 	}
 
 	// add contacts to database
@@ -47,13 +60,9 @@ public class AddressBookDBController {
 			Runnable task = () -> {
 				mapAdditionStatus.put(con.hashCode(), false);
 				AddressBookMain.LOG.info("Contact being added: " + Thread.currentThread().getName());
-				try {
-					if (AddressBookDBService.getInstance().addContact(con))
-						contactList.add(con);
+				if (addContact(con, IOService.DB_IO)) {
 					mapAdditionStatus.put(con.hashCode(), true);
 					AddressBookMain.LOG.info("Contact added: " + Thread.currentThread().getName());
-				} catch (AddressBookException e) {
-					e.printStackTrace();
 				}
 			};
 			Thread thread = new Thread(task, con.getFirstName() + " " + con.getLastName());
@@ -69,13 +78,18 @@ public class AddressBookDBController {
 	}
 
 	// updates phone details of contact
-	public void updatePhoneContact(String firstName, String lastName, Long phone) {
-		try {
-			AddressBookDBService.getInstance().updateContactPhoneInAddressBook(firstName, lastName, phone);
-		} catch (AddressBookException e) {
-			e.printStackTrace();
+	public void updatePhoneContact(IOService ioService, String firstName, String lastName, Long phone) {
+		if (ioService.equals(IOService.DB_IO)) {
+			try {
+				AddressBookDBService.getInstance().updateContactPhoneInAddressBook(firstName, lastName, phone);
+			} catch (AddressBookException e) {
+				e.printStackTrace();
+			}
+			Contact contact = getContact(firstName, lastName);
+			if (contact != null)
+				contact.setPhoneNo(phone);
 		}
-		readContactsFromAddressBookDB();
+
 	}
 
 	// returns list of contacts added in particular period
@@ -108,4 +122,10 @@ public class AddressBookDBController {
 		return 0l;
 	}
 
+	// returns contact by name
+	public Contact getContact(String firstName, String lastName) {
+		return contactList.stream()
+				.filter(con -> con.getFirstName().equals(firstName) && con.getLastName().equals(lastName)).findFirst()
+				.orElse(null);
+	}
 }

@@ -67,7 +67,7 @@ public class AddressBookDBService {
 			}
 			resultSet = conStatement.getGeneratedKeys();
 			if (resultSet.next())
-				contact.setContactId(String.valueOf(resultSet.getInt(1)));
+				contact.setContactId(resultSet.getInt(1));
 		} catch (SQLException e) {
 			e.printStackTrace();
 			try {
@@ -81,7 +81,7 @@ public class AddressBookDBService {
 		try {
 			String query = "insert into addressbook_contact (contact_id,id_addressbook_name,id_addressbook_type) values (?,?,?)";
 			conStatement = con.prepareStatement(query);
-			conStatement.setInt(1, Integer.valueOf(contact.getContactId()));
+			conStatement.setInt(1, contact.getContactId());
 			conStatement.setInt(2, Integer.valueOf(contact.getAddressBookId()));
 			conStatement.setInt(3, Integer.valueOf(contact.getAddressBookTypeId()));
 			rowsAffected = conStatement.executeUpdate();
@@ -193,7 +193,7 @@ public class AddressBookDBService {
 				Integer zipCode = resultSet.getInt("zip");
 				Long phoneNo = resultSet.getLong("phone_no");
 				String email = resultSet.getString("email_id");
-				String contactId = String.valueOf(resultSet.getInt("contact_id"));
+				Integer contactId = resultSet.getInt("contact_id");
 				contactList.add(
 						new Contact(firstName, lastName, address, city, state, zipCode, phoneNo, email, contactId));
 			}
