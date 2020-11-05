@@ -54,26 +54,33 @@ public class AddressBookServiceController {
 	}
 
 	// add contacts to database
-	public void addMultipleContactsToDB(List<Contact> conList) {
-		Map<Integer, Boolean> mapAdditionStatus = new HashMap<>();
-		conList.stream().forEach(con -> {
-			Runnable task = () -> {
-				mapAdditionStatus.put(con.hashCode(), false);
-				AddressBookMain.LOG.info("Contact being added: " + Thread.currentThread().getName());
-				if (addContact(con, IOService.DB_IO)) {
-					mapAdditionStatus.put(con.hashCode(), true);
-					AddressBookMain.LOG.info("Contact added: " + Thread.currentThread().getName());
+	public void addMultipleContacts(List<Contact> conList, IOService ioService) {
+		if (ioService.equals(IOService.DB_IO)) {
+			Map<Integer, Boolean> mapAdditionStatus = new HashMap<>();
+			conList.stream().forEach(con -> {
+				Runnable task = () -> {
+					mapAdditionStatus.put(con.hashCode(), false);
+					AddressBookMain.LOG.info("Contact being added: " + Thread.currentThread().getName());
+					if (addContact(con, IOService.DB_IO)) {
+						mapAdditionStatus.put(con.hashCode(), true);
+						AddressBookMain.LOG.info("Contact added: " + Thread.currentThread().getName());
+					}
+				};
+				Thread thread = new Thread(task, con.getFirstName() + " " + con.getLastName());
+				thread.start();
+			});
+			while (mapAdditionStatus.containsValue(false)) {
+				try {
+					Thread.sleep(10);
+				} catch (InterruptedException e) {
+					AddressBookMain.LOG.error(e.getMessage());
 				}
-			};
-			Thread thread = new Thread(task, con.getFirstName() + " " + con.getLastName());
-			thread.start();
-		});
-		while (mapAdditionStatus.containsValue(false)) {
-			try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				AddressBookMain.LOG.error(e.getMessage());
 			}
+		}
+		if (ioService.equals(IOService.REST_IO)) {
+			conList.stream().forEach(con -> {
+				addContact(con, IOService.REST_IO);
+			});
 		}
 	}
 

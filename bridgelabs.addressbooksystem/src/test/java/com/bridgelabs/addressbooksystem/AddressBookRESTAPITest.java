@@ -27,21 +27,32 @@ public class AddressBookRESTAPITest {
 	@Test
 	public void test1_givenContact_WhenAdded_ShouldMatch201Response() {
 		Contact[] contactArray = getContactsList();
-		AddressBookServiceController addressBookDBController = new AddressBookServiceController(Arrays.asList(contactArray));
-		Contact contact = new Contact("Gv", "Nikhil", "main-road", "Hyderabad", "Telangana", 500062, 7896541230l,
-				"abc@gmail.com");
-		Response response = addContactToJSONServer(contact);
-		int statusCode = response.getStatusCode();
-		assertEquals(201, statusCode);
-		addressBookDBController.addContact(contact, IOService.REST_IO);
-		assertEquals(1, addressBookDBController.contactList.size());
+		AddressBookServiceController addressBookDBController = new AddressBookServiceController(
+				Arrays.asList(contactArray));
+		Contact[] conArray = {
+				new Contact("Hinata", "Hyuga", "Himayat-Nagar", "Hyderabad", "Telangana", 500062, 7777777777l,
+						"hinata@gmail.com"),
+				new Contact("Naruto", "Uzumaki", "Connaught-Place", "New Delhi", "New Delhi", 1100042, 8888888888l,
+						"naruto@gmail.com"),
+				new Contact("Endou", "Mamoru", "Thane", "Mumbai", "Maharashtra", 4500230, 5555555555l,
+						"endou@gmail.com"),
+				new Contact("Natsumi", "Raimon", "Whitefield", "Bangalore", "Karnataka", 530068, 4444444444l,
+						"natsumi@gmail.com") };
+		Arrays.asList(conArray).stream().forEach(contact -> {
+			Response response = addContactToJSONServer(contact);
+			int statusCode = response.getStatusCode();
+			assertEquals(201, statusCode);
+		});
+		addressBookDBController.addMultipleContacts(Arrays.asList(conArray), IOService.REST_IO);
+		assertEquals(4, addressBookDBController.contactList.size());
 	}
 
 	@Test
 	public void test2_givenContacts_WhenRetrieved_ShouldMatchCount() {
 		Contact[] contactArray = getContactsList();
-		AddressBookServiceController addressBookDBController = new AddressBookServiceController(Arrays.asList(contactArray));
-		assertEquals(1, addressBookDBController.contactList.size());
+		AddressBookServiceController addressBookDBController = new AddressBookServiceController(
+				Arrays.asList(contactArray));
+		assertEquals(4, addressBookDBController.contactList.size());
 	}
 
 	// returns the contact object in json-server

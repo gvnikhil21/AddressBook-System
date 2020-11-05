@@ -85,7 +85,7 @@ public class AddressBookDBTest {
 				new Contact("Garg", "Kaul", "Connaught-Place", "New Delhi", "New Delhi", 110001, 9988996655l,
 						"gargcba@yahoo.com", LocalDate.now(), "1", "2") };
 		Instant start = Instant.now();
-		addressBookDBController.addMultipleContactsToDB(Arrays.asList(contactArray));
+		addressBookDBController.addMultipleContacts(Arrays.asList(contactArray), IOService.DB_IO);
 		Instant end = Instant.now();
 		AddressBookMain.LOG.info("Duration with thread: " + Duration.between(start, end));
 		assertEquals(9, addressBookDBController.contactList.size());
