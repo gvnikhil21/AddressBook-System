@@ -590,3 +590,146 @@ INFO  | 2020-11-05 20:57:21 | [main] addressbooksystem.AddressBookRESTAPITest (A
     "contactId": 4
   }
 ]
+INFO  | 2020-11-05 21:48:10 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:98) - Contact details(in JSON server): 
+[]
+INFO  | 2020-11-05 21:48:11 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:98) - Contact details(in JSON server): 
+[
+  {
+    "firstName": "Hinata",
+    "lastName": "Hyuga",
+    "address": "Himayat-Nagar",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "zipCode": 500062,
+    "phoneNo": 7777777777,
+    "email": "hinata@gmail.com",
+    "contactId": 1
+  },
+  {
+    "firstName": "Naruto",
+    "lastName": "Uzumaki",
+    "address": "Connaught-Place",
+    "city": "New Delhi",
+    "state": "New Delhi",
+    "zipCode": 1100042,
+    "phoneNo": 8888888888,
+    "email": "naruto@gmail.com",
+    "contactId": 2
+  },
+  {
+    "firstName": "Endou",
+    "lastName": "Mamoru",
+    "address": "Thane",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "zipCode": 4500230,
+    "phoneNo": 5555555555,
+    "email": "endou@gmail.com",
+    "contactId": 3
+  },
+  {
+    "firstName": "Natsumi",
+    "lastName": "Raimon",
+    "address": "Whitefield",
+    "city": "Bangalore",
+    "state": "Karnataka",
+    "zipCode": 530068,
+    "phoneNo": 4444444444,
+    "email": "natsumi@gmail.com",
+    "contactId": 4
+  }
+]
+INFO  | 2020-11-05 21:48:11 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:98) - Contact details(in JSON server): 
+[
+  {
+    "firstName": "Hinata",
+    "lastName": "Hyuga",
+    "address": "Himayat-Nagar",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "zipCode": 500062,
+    "phoneNo": 7777777777,
+    "email": "hinata@gmail.com",
+    "contactId": 1
+  },
+  {
+    "firstName": "Naruto",
+    "lastName": "Uzumaki",
+    "address": "Connaught-Place",
+    "city": "New Delhi",
+    "state": "New Delhi",
+    "zipCode": 1100042,
+    "phoneNo": 8888888888,
+    "email": "naruto@gmail.com",
+    "contactId": 2
+  },
+  {
+    "firstName": "Endou",
+    "lastName": "Mamoru",
+    "address": "Thane",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "zipCode": 4500230,
+    "phoneNo": 5555555555,
+    "email": "endou@gmail.com",
+    "contactId": 3
+  },
+  {
+    "firstName": "Natsumi",
+    "lastName": "Raimon",
+    "address": "Whitefield",
+    "city": "Bangalore",
+    "state": "Karnataka",
+    "zipCode": 530068,
+    "phoneNo": 4444444444,
+    "email": "natsumi@gmail.com",
+    "contactId": 4
+  }
+]
+INFO  | 2020-11-05 21:48:11 | [main] addressbooksystem.AddressBookRESTAPITest (AddressBookRESTAPITest.java:98) - Contact details(in JSON server): 
+[
+  {
+    "firstName": "Hinata",
+    "lastName": "Hyuga",
+    "address": "Himayat-Nagar",
+    "city": "Hyderabad",
+    "state": "Telangana",
+    "zipCode": 500062,
+    "phoneNo": 1234567890,
+    "email": "hinata@gmail.com",
+    "contactId": 1
+  },
+  {
+    "firstName": "Naruto",
+    "lastName": "Uzumaki",
+    "address": "Connaught-Place",
+    "city": "New Delhi",
+    "state": "New Delhi",
+    "zipCode": 1100042,
+    "phoneNo": 8888888888,
+    "email": "naruto@gmail.com",
+    "contactId": 2
+  },
+  {
+    "firstName": "Endou",
+    "lastName": "Mamoru",
+    "address": "Thane",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "zipCode": 4500230,
+    "phoneNo": 5555555555,
+    "email": "endou@gmail.com",
+    "contactId": 3
+  },
+  {
+    "firstName": "Natsumi",
+    "lastName": "Raimon",
+    "address": "Whitefield",
+    "city": "Bangalore",
+    "state": "Karnataka",
+    "zipCode": 530068,
+    "phoneNo": 4444444444,
+    "email": "natsumi@gmail.com",
+    "contactId": 4
+  }
+]

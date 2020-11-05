@@ -12,17 +12,6 @@
       "contactId": 1
     },
     {
-      "firstName": "Naruto",
-      "lastName": "Uzumaki",
-      "address": "Connaught-Place",
-      "city": "New Delhi",
-      "state": "New Delhi",
-      "zipCode": 1100042,
-      "phoneNo": 8888888888,
-      "email": "naruto@gmail.com",
-      "contactId": 2
-    },
-    {
       "firstName": "Endou",
       "lastName": "Mamoru",
       "address": "Thane",

@@ -75,6 +75,23 @@ public class AddressBookRESTAPITest {
 		assertEquals(phone, contact.getPhoneNo());
 	}
 
+	@Test
+	public void test4_WhenDeleted_ShouldMatchCount() {
+		String firstName = "Naruto";
+		String lastName = "Uzumaki";
+		Contact[] contactArray = getContactsList();
+		AddressBookServiceController addressBookServiceController = new AddressBookServiceController(
+				Arrays.asList(contactArray));
+		Contact contact = addressBookServiceController.getContact(firstName, lastName);
+		RequestSpecification request = RestAssured.given();
+		request.header("Content-Type", "application/json");
+		Response response = request.delete("/contacts/" + contact.getContactId());
+		int statusCode = response.getStatusCode();
+		assertEquals(200, statusCode);
+		addressBookServiceController.deleteContact(IOService.REST_IO, firstName, lastName);
+		assertEquals(3, addressBookServiceController.contactList.size());
+	}
+
 	// returns the contact object in json-server
 	private Contact[] getContactsList() {
 		Response response = RestAssured.get("/contacts");

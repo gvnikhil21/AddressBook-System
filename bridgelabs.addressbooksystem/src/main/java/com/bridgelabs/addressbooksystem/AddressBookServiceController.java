@@ -100,6 +100,14 @@ public class AddressBookServiceController {
 			contact.setPhoneNo(phone);
 	}
 
+	// deletes contact
+	public void deleteContact(IOService ioService, String firstName, String lastName) {
+		if (ioService.equals(IOService.REST_IO)) {
+			Contact contact = getContact(firstName, lastName);
+			contactList.remove(contact);
+		}
+	}
+
 	// returns list of contacts added in particular period
 	public List<Contact> getContactsAddedInParticularPeriodFromDB(LocalDate start, LocalDate end) {
 		try {
