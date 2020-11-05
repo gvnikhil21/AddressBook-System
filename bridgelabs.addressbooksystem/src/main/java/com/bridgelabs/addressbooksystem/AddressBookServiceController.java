@@ -86,17 +86,18 @@ public class AddressBookServiceController {
 
 	// updates phone details of contact
 	public void updatePhoneContact(IOService ioService, String firstName, String lastName, Long phone) {
+		Contact contact = getContact(firstName, lastName);
 		if (ioService.equals(IOService.DB_IO)) {
 			try {
 				AddressBookDBService.getInstance().updateContactPhoneInAddressBook(firstName, lastName, phone);
 			} catch (AddressBookException e) {
 				e.printStackTrace();
 			}
-			Contact contact = getContact(firstName, lastName);
 			if (contact != null)
 				contact.setPhoneNo(phone);
 		}
-
+		if (ioService.equals(IOService.REST_IO) && contact != null)
+			contact.setPhoneNo(phone);
 	}
 
 	// returns list of contacts added in particular period

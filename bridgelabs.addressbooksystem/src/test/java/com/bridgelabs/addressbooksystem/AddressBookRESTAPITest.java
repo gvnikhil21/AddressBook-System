@@ -55,6 +55,26 @@ public class AddressBookRESTAPITest {
 		assertEquals(4, addressBookDBController.contactList.size());
 	}
 
+	@Test
+	public void test3_givenContactPhone_WhenUpdated_ShouldMatch() {
+		String firstName = "Hinata";
+		String lastName = "Hyuga";
+		long phone = 1234567890l;
+		Contact[] contactArray = getContactsList();
+		AddressBookServiceController addressBookServiceController = new AddressBookServiceController(
+				Arrays.asList(contactArray));
+		addressBookServiceController.updatePhoneContact(IOService.REST_IO, firstName, lastName, phone);
+		Contact contact = addressBookServiceController.getContact(firstName, lastName);
+		String Json = new Gson().toJson(contact);
+		RequestSpecification request = RestAssured.given();
+		request.headers("Content-Type", "application/json");
+		request.body(Json);
+		Response response = request.put("/contacts/" + contact.getContactId());
+		int statusCode = response.getStatusCode();
+		assertEquals(200, statusCode);
+		assertEquals(phone, contact.getPhoneNo());
+	}
+
 	// returns the contact object in json-server
 	private Contact[] getContactsList() {
 		Response response = RestAssured.get("/contacts");
